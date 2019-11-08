@@ -145,9 +145,10 @@ class WineSearchIntentHandler(AbstractRequestHandler):
             
         # prepare result statement
         final_speech = ""
+        query_string = str(data.Q_WINE)
         
         try:
-            sparql_endpoint.setQuery(str(data.Q_WINE))
+            sparql_endpoint.setQuery(query_string)
             sparql_endpoint.setReturnFormat(JSON)
             results = sparql_endpoint.query().convert()
             
