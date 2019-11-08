@@ -132,7 +132,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
-class WineSearchHandler(AbstractRequestHandler):
+class WineSearchIntentHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
