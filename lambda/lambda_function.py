@@ -146,7 +146,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         # prepare result statement
         final_speech = ""
         #query_string = data.Q_WINE
-        query = "data"
+        query_string = "data"
 
         final_speech += query_string
 
