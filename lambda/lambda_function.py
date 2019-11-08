@@ -132,6 +132,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
+
 class WineSearchIntentHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
@@ -147,7 +148,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         #query_string = data.Q_WINE
         query = "data"
 
-        final_speech = query_string
+        final_speech += query_string
 
         #try:
          #   sparql_endpoint.setQuery(query_string)
