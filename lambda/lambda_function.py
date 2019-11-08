@@ -132,15 +132,15 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
-class WineIntentHandler(AbstractRequestHandler):
+class WineSearchHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("WineIntent")(handler_input)
+        return ask_utils.is_intent_name("WineSearchIntent")(handler_input)
 
     def handle(self, handler_input):
         # lambda log
-        logger.info("In WineHandler")
+        logger.info("In WineSearchHandler")
             
         # prepare result statement
         final_speech = ""
@@ -295,7 +295,7 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(LodgingSearchIntentHandler())
-sb.add_request_handler(WineIntentHandler())
+sb.add_request_handler(WineSearchHandler())
 sb.add_request_handler(AboutIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
