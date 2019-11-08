@@ -165,9 +165,9 @@ class WineSearchIntentHandler(AbstractRequestHandler):
             #    for result in results["results"]["bindings"]:
             #        final_speech += "I would suggest a bottle of " + str(result["name"]["value"]) + \
             #        " . It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
-        #except Exception:
-        #    handler_input.response_builder.speak("There was a problem with the service request. ")
-        #    return handler_input.response_builder.response
+        except Exception:
+            handler_input.response_builder.speak("There was a problem with the service request. ")
+            return handler_input.response_builder.response
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
