@@ -33,8 +33,8 @@ SELECT ?posLabel ?addr ?loc WHERE {{
   FILTER(?rand < 0.30) .
 }} LIMIT {}"""
 
-Q_WINE="""SELECT ?name ?vintage WHERE {
+Q_WINE="""SELECT ?name ?vintage WHERE {{
   ?wine a :Wine ; :wineVintageYear ?vintage ; rdfs:label ?name ; :receivesWineAward ?aw.
   BIND(RAND() AS ?rand) .
   FILTER(?rand <= 0.10) .
-} LIMIT 1"""
+}} LIMIT 1"""
