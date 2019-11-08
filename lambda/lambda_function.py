@@ -146,8 +146,8 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         # prepare result statement
         final_speech = ""
         query_string = str(data.Q_WINE)
-
-        final_speech += query_string
+        final_speech += "Done"
+        logger.info(query_string)
 
         #try:
          #   sparql_endpoint.setQuery(query_string)
