@@ -149,12 +149,12 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         final_speech += "Done"
         logger.info(query_string)
 
-        #try:
-         #   sparql_endpoint.setQuery(query_string)
-          #  sparql_endpoint.setReturnFormat(JSON)
-           # results = sparql_endpoint.query().convert()
+        try:
+            sparql_endpoint.setQuery(query_string)
+            sparql_endpoint.setReturnFormat(JSON)
+            results = sparql_endpoint.query().convert()
 
-            #logger.info("Inside try")
+            logger.info("Inside try")
             
             #for result in results["results"]["bindings"]:
             #    final_speech += "there is some wine here"
