@@ -145,12 +145,9 @@ class WineSearchIntentHandler(AbstractRequestHandler):
             
         # prepare result statement
         final_speech = ""
-        query_string = str(data.Q_WINE)
-        final_speech += "Done"
-        logger.info(query_string)
-
+        
         try:
-            sparql_endpoint.setQuery(query_string)
+            sparql_endpoint.setQuery(str(data.Q_WINE))
             sparql_endpoint.setReturnFormat(JSON)
             results = sparql_endpoint.query().convert()
             
@@ -159,8 +156,8 @@ class WineSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found no results for what you asked, sorry. "
             else:
                 for result in results["results"]["bindings"]:
-                    final_speech += "I would suggest a bottle of " + str(result["name"]["value"]) + \
-                    " . It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
+                    final_speech += "I would suggest a bottle of <lang xml:lang='de-DE'>" + str(result["name"]["value"]) + \
+                    "</lang>. It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
