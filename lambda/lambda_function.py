@@ -141,7 +141,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # lambda log
-        logger.info("In WineSearchHandler")
+        logger.info("In WineSearchIntentHandler")
             
         # prepare result statement
         final_speech = ""
