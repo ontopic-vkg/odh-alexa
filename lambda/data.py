@@ -38,7 +38,6 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 PREFIX : <http://noi.example.org/ontology/odh#>
 
-
 SELECT ?name ?vintage WHERE {
   ?wine a :Wine ; :wineVintageYear ?vintage ; rdfs:label ?name ; :receivesWineAward ?aw.
   BIND(RAND() AS ?rand) .
