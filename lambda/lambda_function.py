@@ -115,14 +115,14 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found something. "
                 for result in results["results"]["bindings"]:
                     final_speech += "The " + user_ltype + " is called <lang xml:lang='de-DE'>" + str(
-                        result["posLabel"]["value"]) + "</lang> . It's located in <lang xml:lang='it-IT'>" \
+                        result["posLabel"]["value"]) + "</lang>. It's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
             else:
                 final_speech += " I found " + str(len(results["results"]["bindings"])) + ". "
                 for count, result in enumerate(results["results"]["bindings"]):
                     final_speech += "Hotel number " + str(count + 1) + " is called <lang xml:lang='de-DE'>" + str(
                         result["posLabel"]["value"]) \
-                                    + "</lang> . It's located in <lang xml:lang='it-IT'>" + str(
+                                    + "</lang>. It's located in <lang xml:lang='it-IT'>" + str(
                         result["addr"]["value"]) + " " + str(
                         result["loc"]["value"]) + "</lang>. "
         except Exception:
@@ -158,7 +158,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
             else:
                 for result in results["results"]["bindings"]:
                     final_speech += "I would suggest a bottle of <lang xml:lang='de-DE'>" + str(result["name"]["value"]) + \
-                    "</lang> . It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
+                    "</lang>. It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
