@@ -103,7 +103,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                     final_speech += "The " + user_ltype + " is called <lang xml:lang='de-DE'>" + \
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
-
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
