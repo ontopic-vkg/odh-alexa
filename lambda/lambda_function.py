@@ -171,7 +171,6 @@ class ThankIntentHandler(AbstractRequestHandler):
         logger.info("In ThankIntentHandler")
         
         speech = random.choice(data.THANK_RESPONSE)
-        #speech += " " + data.GENERIC_REPROMPT
 
         handler_input.response_builder.speak(speech)
         handler_input.response_builder.ask(data.GENERIC_REPROMPT)
