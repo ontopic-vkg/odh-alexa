@@ -347,6 +347,8 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(LodgingSearchIntentHandler())
+sb.add_request_handler(YesMoreLodgingInfoIntentHandler())
+sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(ThankIntentHandler())
 sb.add_request_handler(AboutIntentHandler())
