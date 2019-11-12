@@ -64,11 +64,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         # Get the values from the slots and prepare the parameters to pass to the queries
         if(slots["city"]):
             city = str(slots["city"].value)
-        if(slots["nrLodgings"]):
-            nr_lodgings = str(slots["nrLodgings"].value)
-            if(nr_lodgings == "None"):
-                nr_lodgings = "3" # by default we return 3 lodgings found (in case the user does not input a preferred number)
-
+        
         user_ltype = str(slots["lodgingType"].value).lower()
         if(user_ltype in "hotels"):
             lodging_type = "Hotel"
@@ -82,9 +78,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         final_speech = ""
         query_string = ""
         
-        # This might be useful for debugging
+        # Example of loggin that can be useful for debugging
         # logger.info("Gave city value " + city)
-        # logger.info("Gave limit value " + nr_lodgings)
         # logger.info(" Gave lodging_type value " + lodging_type)
             
         if (city == "None" and nr_lodgings == "3"):
