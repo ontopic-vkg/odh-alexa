@@ -62,9 +62,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         lodging_type = ""
         
         # Get the values from the slots and prepare the parameters to pass to the queries
-        if(slots["city"]):
-            city = str(slots["city"].value)
-        
         user_ltype = str(slots["lodgingType"].value).lower()
         if(user_ltype in "hotels"):
             lodging_type = "Hotel"
