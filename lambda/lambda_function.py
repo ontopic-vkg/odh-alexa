@@ -130,7 +130,6 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
-        _ = attribute_manager.request_attributes["_"]
 
         restaurant_name = session_attr["restaurant"]
         restaurant_details = util.get_restaurants_by_name(
@@ -167,7 +166,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In NoMoreInfoIntentHandler")
 
-        final_speech = "Ok then."
+        final_speech = "Ok then, hope I was of help"
         handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
