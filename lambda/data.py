@@ -19,8 +19,8 @@ SELECT ?posLabel ?addr ?loc WHERE {{
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it') .
   BIND(RAND() AS ?rand) .
-  FILTER(?rand < 0.30) .
-}} LIMIT {}"""
+  FILTER(?rand < 0.10) .
+}} LIMIT 1"""
 
 Q_RANDOM_LODGING_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -31,8 +31,8 @@ SELECT ?posLabel ?addr ?loc WHERE {{
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
   BIND(RAND() AS ?rand) .
-  FILTER(?rand < 0.30) .
-}} LIMIT {}"""
+  FILTER(?rand < 0.10) .
+}} LIMIT 1"""
 
 Q_WINE="""PREFIX : <http://noi.example.org/ontology/odh#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
