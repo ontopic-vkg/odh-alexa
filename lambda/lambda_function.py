@@ -101,7 +101,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             else:
                 final_speech += " I found one. "
                 for result in results["results"]["bindings"]:
-                    hotel_name = str(result["posLabel"]["value"])
+                    lodging_name = str(result["posLabel"]["value"])
                     final_speech += "The " + user_ltype + " is called <lang xml:lang='de-DE'>" + \
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
@@ -109,20 +109,20 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
         
-        session_attr["hotel_name"] = hotel_name
+        session_attr["lodging_name"] = lodging_name
         logger.info("Session hotel name " + str(session_attr["hotel_name"]))
         final_speech += "Would you like to know how many stars the hotel has ?"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
 
-class YesMoreInfoIntentHandler(AbstractRequestHandler):
+class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
         return (is_intent_name("AMAZON.YesIntent")(handler_input) and
-                "restaurant" in session_attr)
+                "hotel_name" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -155,13 +155,13 @@ class YesMoreInfoIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class NoMoreInfoIntentHandler(AbstractRequestHandler):
+class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     """Handler for no to get no more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
         return (is_intent_name("AMAZON.NoIntent")(handler_input) and
-                "restaurant" in session_attr)
+                "hotel_name" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
