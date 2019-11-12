@@ -82,22 +82,9 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         # logger.info("Gave city value " + city)
         # logger.info(" Gave lodging_type value " + lodging_type)
             
-        if (city == "None" and nr_lodgings == "3"):
-            final_speech += "You didn't give me any specifications so here are some random South-Tyrolean " + user_ltype + ". "
-            query_string = data.Q_RANDOM_LODGING.format(lodging_type, nr_lodgings)
-        elif (city == "None"):
-            final_speech += "You didn't give me any specific city to look in so here are " + nr_lodgings + \
-                            " random South-Tyrolean " + user_ltype + ". "
-            query_string = data.Q_RANDOM_LODGING.format(lodging_type, nr_lodgings)
-        elif (nr_lodgings == "3"):
-            final_speech += "You didn't give me any specific number to limit my search so here are some " + user_ltype + \
-                            " in <lang xml:lang='it-IT'>" + city + "</lang>."
-            query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
-        else:
-            final_speech += "Ok, so I looked for " + nr_lodgings + " " + user_ltype + " in <lang xml:lang='it-IT'> " + city + \
-                            "</lang> and "
-            query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
-        
+        final_speech += "Ok, so I looked for " + nr_lodgings + " " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
+            
         try:
             sparql_endpoint.setQuery(query_string)
             sparql_endpoint.setReturnFormat(JSON)
