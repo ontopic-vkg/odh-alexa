@@ -138,6 +138,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         
         #final_speech = "Ok here are the details for " + str(lodging_name) + " which is a " + str(lodging_type)
         
+        final_speech = ""
         query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         
         try:
