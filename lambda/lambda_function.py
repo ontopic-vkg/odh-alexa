@@ -123,7 +123,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
         return (is_intent_name("AMAZON.YesIntent")(handler_input) and
-                "hotel_name" in session_attr)
+                "lodging_name" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -164,7 +164,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
         return (is_intent_name("AMAZON.NoIntent")(handler_input) and
-                "hotel_name" in session_attr)
+                "lodging_name" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
