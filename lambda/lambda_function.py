@@ -140,6 +140,27 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         
         query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         
+        try:
+            sparql_endpoint.setQuery(query_string)
+            sparql_endpoint.setReturnFormat(JSON)
+            results = sparql_endpoint.query().convert()
+
+            # Format the answer for the user
+            if (len(results["results"]["bindings"]) == 0):
+                final_speech += " I found no results for what you asked, sorry. "
+                handler_input.response_builder.speak(final_speech)
+                return handler_input.response_builder.response
+            else:
+                final_speech += " I found one. "
+                for result in results["results"]["bindings"]:
+                    lodging_name = str(result["posLabel"]["value"])
+                    final_speech += "It's called <lang xml:lang='de-DE'>" + \
+                                    str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
+                                    + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
+        except Exception:
+            handler_input.response_builder.speak("There was a problem with the service request. ")
+            return handler_input.response_builder.response
+        
         
 
         #speech = ("{} is located at {}, the phone number is {}, and the "
