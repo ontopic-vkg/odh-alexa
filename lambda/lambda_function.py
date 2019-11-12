@@ -90,6 +90,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             # Format the answer for the user
             if (len(results["results"]["bindings"]) == 0):
                 final_speech += " I found no results for what you asked, sorry. "
+                handler_input.response_builder.speak(final_speech)
+                return handler_input.response_builder.response
             elif (len(results["results"]["bindings"]) == 1):
                 final_speech += " I found something. "
                 for result in results["results"]["bindings"]:
@@ -106,7 +108,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
         
-        
+        final_speech += ""
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
