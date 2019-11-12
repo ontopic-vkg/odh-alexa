@@ -36,7 +36,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
         logger.info("Launching skill...") 
         
-        speech = data.WELCOME
+        speech = random.choice(data.WELCOME)
         speech += " " + data.HELP
         handler_input.response_builder.speak(speech)
         handler_input.response_builder.ask(data.GENERIC_REPROMPT)
