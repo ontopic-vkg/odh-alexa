@@ -115,6 +115,63 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
+class YesMoreInfoIntentHandler(AbstractRequestHandler):
+    """Handler for yes to get more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("AMAZON.YesIntent")(handler_input) and
+                "restaurant" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("In YesMoreInfoIntentHandler")
+
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+        _ = attribute_manager.request_attributes["_"]
+
+        restaurant_name = session_attr["restaurant"]
+        restaurant_details = util.get_restaurants_by_name(
+            data.CITY_DATA, restaurant_name)
+
+        speech = ("{} is located at {}, the phone number is {}, and the "
+                  "description is, {}. "
+                  "<say-as interpret-as='interjection'>bon appetit</say-as>"
+                  .format(restaurant_details["name"],
+                          restaurant_details["address"],
+                          restaurant_details["phone"],
+                          restaurant_details["description"]))
+        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
+            restaurant_details["name"], restaurant_details["address"],
+            data.CITY_DATA["city"], data.CITY_DATA["state"],
+            data.CITY_DATA["postcode"], restaurant_details["phone"])
+
+        handler_input.response_builder.speak(speech).set_card(
+            SimpleCard(
+                title=_(data.SKILL_NAME),
+                content=card_info)).set_should_end_session(True)
+        return handler_input.response_builder.response
+
+
+class NoMoreInfoIntentHandler(AbstractRequestHandler):
+    """Handler for no to get no more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("AMAZON.NoIntent")(handler_input) and
+                "restaurant" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("In NoMoreInfoIntentHandler")
+
+        speech = ("Ok.  Enjoy your meal! "
+                  "<say-as interpret-as='interjection'>bon appetit</say-as>")
+        handler_input.response_builder.speak(speech).set_should_end_session(
+            True)
+        return handler_input.response_builder.response
+
 
 class WineSearchIntentHandler(AbstractRequestHandler):
 
