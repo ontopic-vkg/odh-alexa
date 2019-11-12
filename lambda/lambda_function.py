@@ -76,13 +76,13 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         else:
             lodging_type = "BedAndBreakfast"
         
-        final_speech = ""
-        query_string = ""
-        
         # Example of loggin that can be useful for debugging
         # logger.info("Gave city value " + city)
         # logger.info(" Gave lodging_type value " + lodging_type)
-            
+        final_speech = ""
+        query_string = ""
+        hotel_name = ""
+        
         final_speech += "Ok, so I looked for " + nr_lodgings + " " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
             
@@ -112,6 +112,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
         
+        session_attr["hotel_name"] = 
         final_speech += "Would you like to know how many stars the hotels has ?"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
