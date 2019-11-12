@@ -96,19 +96,14 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found no results for what you asked, sorry. "
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
-            elif (len(results["results"]["bindings"]) == 1):
-                final_speech += " I found something. "
+            else:
+                final_speech += " I found one. "
                 for result in results["results"]["bindings"]:
                     hotel_name = str(result["posLabel"]["value"])
                     final_speech += "The " + user_ltype + " is called <lang xml:lang='de-DE'>" + \
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
-            else:
-                final_speech += " I found " + str(len(results["results"]["bindings"])) + ". "
-                for count, result in enumerate(results["results"]["bindings"]):
-                    final_speech += "Hotel number " + str(count + 1) + " is called <lang xml:lang='de-DE'>" + str(
-                        result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
-                        + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
+
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
