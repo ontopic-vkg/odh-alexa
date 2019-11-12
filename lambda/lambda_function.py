@@ -85,7 +85,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         query_string = ""
         hotel_name = ""
         
-        final_speech += "Ok, so I looked for " + nr_lodgings + " " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
             
         try:
