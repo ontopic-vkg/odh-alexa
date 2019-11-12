@@ -170,7 +170,7 @@ class ThankIntentHandler(AbstractRequestHandler):
         # lambda log
         logger.info("In ThankIntentHandler")
         
-        speech = data.THANK_RESPONSE
+        speech = random.choice(data.THANK_RESPONSE)
         #speech += " " + data.GENERIC_REPROMPT
 
         handler_input.response_builder.speak(speech)
