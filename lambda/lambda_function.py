@@ -102,7 +102,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found one. "
                 for result in results["results"]["bindings"]:
                     lodging_name = str(result["posLabel"]["value"])
-                    final_speech += "The " + user_ltype + " is called <lang xml:lang='de-DE'>" + \
+                    final_speech += "It's called <lang xml:lang='de-DE'>" + \
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
         except Exception:
