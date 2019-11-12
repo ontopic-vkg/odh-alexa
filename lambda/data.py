@@ -6,7 +6,7 @@ HELP = "Say about to hear more about the open data hub or you can just ask me ab
 ABOUT = "Open Data Hub is your access point to South Tyrol’s relevant data. The data is updated on a regular basis and easily accessible."
 STOP = "Okay, see you next time!"
 FALLBACK = "Hmmm I can't help you with that. I can help you learn about the open data hub or discover hotels though. Wanna try?"
-THANK_RESPONSE = "No worries."
+THANK_RESPONSE = ["No worries.", "I'm here to help", "Glad I could help."]
 GENERIC_REPROMPT = "What can I help you with?"
 
 # SPARQL QUERIES
