@@ -108,7 +108,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
         
-        final_speech += ""
+        final_speech += "Would you like to know how many stars the hotels has ?"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
