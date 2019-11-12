@@ -95,7 +95,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                             " random South-Tyrolean " + user_ltype + ". "
             query_string = data.Q_RANDOM_LODGING.format(lodging_type, nr_lodgings)
         elif (nr_lodgings == "3"):
-            final_speech += "You didn't give me any specific number to limit my search so here are 3 " + user_ltype + \
+            final_speech += "You didn't give me any specific number to limit my search so here are some " + user_ltype + \
                             " in <lang xml:lang='it-IT'>" + city + "</lang>."
             query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
         else:
