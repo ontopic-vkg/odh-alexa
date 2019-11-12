@@ -77,9 +77,9 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         else:
             lodging_type = "BedAndBreakfast"
         
-        # Example of loggin that can be useful for debugging
-        # logger.info("Gave city value " + city)
-        # logger.info(" Gave lodging_type value " + lodging_type)
+        # Example of logging that can truly be useful for debugging
+        logger.info("Gave city value " + city)
+        logger.info(" Gave lodging_type value " + lodging_type)
         
         final_speech = ""
         query_string = ""
