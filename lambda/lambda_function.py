@@ -167,9 +167,8 @@ class NoMoreInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In NoMoreInfoIntentHandler")
 
-        speech = ("Ok.  Enjoy your meal! "
-                  "<say-as interpret-as='interjection'>bon appetit</say-as>")
-        handler_input.response_builder.speak(speech).set_should_end_session(
+        final_speech = "Ok then."
+        handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
 
