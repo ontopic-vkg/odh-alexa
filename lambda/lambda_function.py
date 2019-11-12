@@ -126,8 +126,9 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
-
-        handler_input.response_builder.speak(final_speech)
+        
+        
+        handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
 
