@@ -161,8 +161,6 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
-        
-        
 
         #speech = ("{} is located at {}, the phone number is {}, and the "
         #          "description is, {}. "
