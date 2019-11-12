@@ -183,6 +183,22 @@ class AboutIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.ask(data.GENERIC_REPROMPT)
         return handler_input.response_builder.response
 
+class ThankIntentHandler(AbstractRequestHandler):
+    
+    def can_handle(self, handler_input):
+        return ask_utils.is_intent_name("ThankIntent")(handler_input)
+    
+    def handle(self, handler_input):
+        # lambda log
+        logger.info("In ThankIntentHandler")
+        
+        speech = data.ABOUT
+        speech += " " + data.GENERIC_REPROMPT
+
+        handler_input.response_builder.speak(speech)
+        handler_input.response_builder.ask(data.GENERIC_REPROMPT)
+        return handler_input.response_builder.response
+
 
 class HelpIntentHandler(AbstractRequestHandler):
 
