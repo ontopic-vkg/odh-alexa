@@ -134,10 +134,12 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
 
         lodging_name = session_attr["lodging_name"]
+        lodging_type = session_attr["lodging_type"]
+
         #restaurant_details = util.get_restaurants_by_name(
         #    data.CITY_DATA, restaurant_name)
         
-        final_speech = "Ok here are the details for " + str(lodging_name) + ". bla bla blah bla blah"
+        final_speech = "Ok here are the details for " + str(lodging_name) + " which is a " + str(lodging_type)
 
         #speech = ("{} is located at {}, the phone number is {}, and the "
         #          "description is, {}. "
