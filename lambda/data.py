@@ -22,7 +22,20 @@ SELECT ?posLabel ?addr ?loc WHERE {{
   FILTER(?rand < 0.10) .
 }} LIMIT 1"""
 
-Q_WINE="""PREFIX : <http://noi.example.org/ontology/odh#>
+Q_LODGING_INFO = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+
+SELECT ?posLabel ?addr ?loc WHERE {{ 
+  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
+  FILTER (?posLabel = "{}"@de) .
+  FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it') .
+  BIND(RAND() AS ?rand) .
+  FILTER(?rand < 0.10) .
+}} LIMIT 1"""
+
+Q_WINE = """PREFIX : <http://noi.example.org/ontology/odh#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
