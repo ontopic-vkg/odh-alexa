@@ -140,6 +140,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         #    data.CITY_DATA, restaurant_name)
         
         final_speech = "Ok here are the details for " + str(lodging_name) + " which is a " + str(lodging_type)
+        
+        query_string = data.
 
         #speech = ("{} is located at {}, the phone number is {}, and the "
         #          "description is, {}. "
