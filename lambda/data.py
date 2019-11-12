@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 SKILL_NAME = "ODH"
-WELCOME = "Welcome to the Open Data Hub!"
+WELCOME = ["Welcome to the Open Data Hub!", "Hello and Welcome!", "This is the Open Data Hub speaking!"]
 HELP = "Say about to hear more about the open data hub or you can just ask me about lodging. Say exit to stop this interaction and quit the skill."
 ABOUT = "Open Data Hub is your access point to South Tyrol’s relevant data. The data is updated on a regular basis and easily accessible."
 STOP = "Okay, see you next time!"
