@@ -131,26 +131,29 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
 
-        restaurant_name = session_attr["restaurant"]
-        restaurant_details = util.get_restaurants_by_name(
-            data.CITY_DATA, restaurant_name)
+        lodging_name = session_attr["lodging_name"]
+        #restaurant_details = util.get_restaurants_by_name(
+        #    data.CITY_DATA, restaurant_name)
+        
+        final_speech = "Ok here are the details for " + str(lodging_name)
 
-        speech = ("{} is located at {}, the phone number is {}, and the "
-                  "description is, {}. "
-                  "<say-as interpret-as='interjection'>bon appetit</say-as>"
-                  .format(restaurant_details["name"],
-                          restaurant_details["address"],
-                          restaurant_details["phone"],
-                          restaurant_details["description"]))
-        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
-            restaurant_details["name"], restaurant_details["address"],
-            data.CITY_DATA["city"], data.CITY_DATA["state"],
-            data.CITY_DATA["postcode"], restaurant_details["phone"])
+        #speech = ("{} is located at {}, the phone number is {}, and the "
+        #          "description is, {}. "
+        #          "<say-as interpret-as='interjection'>bon appetit</say-as>"
+        #          .format(restaurant_details["name"],
+        #                  restaurant_details["address"],
+        #                  restaurant_details["phone"],
+        #                  restaurant_details["description"]))
+        #card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
+        #    restaurant_details["name"], restaurant_details["address"],
+        #    data.CITY_DATA["city"], data.CITY_DATA["state"],
+        #    data.CITY_DATA["postcode"], restaurant_details["phone"])
 
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(
-                title=_(data.SKILL_NAME),
-                content=card_info)).set_should_end_session(True)
+        #handler_input.response_builder.speak(speech).set_card(
+        #    SimpleCard(
+        #        title=_(data.SKILL_NAME),
+        #        content=card_info)).set_should_end_session(True)
+        handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
 
