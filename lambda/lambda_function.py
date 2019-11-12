@@ -55,6 +55,10 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         
         # get slots from user input
         slots = handler_input.request_envelope.request.intent.slots
+        
+        # open the attribute manager so that we can then save things to the session attributes
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
 
         # Init the variables we'll use to parametrize our queries
         city = ""
