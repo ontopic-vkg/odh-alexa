@@ -88,6 +88,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
+        logger.info(query_string)
+
             
         try:
             sparql_endpoint.setQuery(query_string)
