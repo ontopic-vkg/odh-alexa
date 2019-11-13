@@ -152,12 +152,9 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
             else:
-                final_speech += " I found one. "
+                final_speech = "The phone number of " + str(lodging_name) + " is "
                 for result in results["results"]["bindings"]:
-                    lodging_name = str(result["posLabel"]["value"])
-                    final_speech += "It's called <lang xml:lang='de-DE'>" + \
-                                    str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
-                                    + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
+                    final_speech += str(result["phone"]["value"])
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
@@ -178,7 +175,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         #    SimpleCard(
         #        title=_(data.SKILL_NAME),
         #        content=card_info)).set_should_end_session(True)
-        handler_input.response_builder.speak(final_speech).ask(final_speech)
+        handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
 
