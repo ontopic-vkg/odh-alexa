@@ -161,23 +161,16 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
 
-        #speech = ("{} is located at {}, the phone number is {}, and the "
-        #          "description is, {}. "
-        #          "<say-as interpret-as='interjection'>bon appetit</say-as>"
-        #          .format(restaurant_details["name"],
-        #                  restaurant_details["address"],
-        #                  restaurant_details["phone"],
-        #                  restaurant_details["description"]))
-        #card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
-        #    restaurant_details["name"], restaurant_details["address"],
-        #    data.CITY_DATA["city"], data.CITY_DATA["state"],
-        #    data.CITY_DATA["postcode"], restaurant_details["phone"])
+        
+        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
+            restaurant_details["name"], restaurant_details["address"],
+            data.CITY_DATA["city"], data.CITY_DATA["state"],
+            data.CITY_DATA["postcode"], restaurant_details["phone"])
 
-        #handler_input.response_builder.speak(speech).set_card(
-        #    SimpleCard(
-        #        title=_(data.SKILL_NAME),
-        #        content=card_info)).set_should_end_session(True)
-        handler_input.response_builder.speak(final_speech)
+        handler_input.response_builder.speak(final_speech).set_card(
+            SimpleCard(
+                title=_(data.SKILL_NAME),
+                content=card_info)).set_should_end_session(True)
         return handler_input.response_builder.response
 
 
