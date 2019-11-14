@@ -150,7 +150,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
             # Format the answer for the user
             if (len(results["results"]["bindings"]) == 0):
-                final_speech += " I found no results for what you asked, sorry. "
+                final_speech += " I couldn't find any more information, sorry. "
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
             else:
