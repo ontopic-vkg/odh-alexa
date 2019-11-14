@@ -141,6 +141,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         #final_speech = "Ok here are the details for " + str(lodging_name) + " which is a " + str(lodging_type)
         
         final_speech = ""
+        phone_nr = ""
         query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         
         try:
@@ -156,14 +157,14 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
             else:
                 final_speech += "The phone number of " + str(lodging_name) + " is "
                 for result in results["results"]["bindings"]:
+                    phone_nr += str(result["phone"]["value"])
                     final_speech += str(result["phone"]["value"])
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
 
         
-        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(
-            restaurant_details["name"], restaurant_details["address"],
+        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(lodging_type, lodging_type,
             data.CITY_DATA["city"], data.CITY_DATA["state"],
             data.CITY_DATA["postcode"], restaurant_details["phone"])
 
