@@ -109,7 +109,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
         except Exception:
-            handler_input.response_builder.speak("There was a problem with the service request. ")
+            handler_input.response_builder.speak("There was a problem with the service request. Please try again")
             return handler_input.response_builder.response
         
         session_attr["lodging_name"] = lodging_name
