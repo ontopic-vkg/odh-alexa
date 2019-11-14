@@ -164,9 +164,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
             return handler_input.response_builder.response
 
         
-        card_info = "{}\n{}\n{}, {}, {}\nphone: {}\n".format(lodging_type, lodging_type,
-            data.CITY_DATA["city"], data.CITY_DATA["state"],
-            data.CITY_DATA["postcode"], restaurant_details["phone"])
+        card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
 
         handler_input.response_builder.speak(final_speech).set_card(
             SimpleCard(
