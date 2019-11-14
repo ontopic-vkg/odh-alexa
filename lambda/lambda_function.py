@@ -158,12 +158,12 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                 final_speech += "The phone number of " + str(lodging_name) + " is "
                 for result in results["results"]["bindings"]:
                     phone_nr += str(result["phone"]["value"])
-                    final_speech += str(result["phone"]["value"])
+                    final_speech += str(result["phone"]["value"]) + ". "
         except Exception:
             handler_input.response_builder.speak("There was a problem with the service request. ")
             return handler_input.response_builder.response
 
-        final_speech += "I'm sending you this info also on the Alexa app so you can check it there"
+        final_speech += "I'm sending you this info also on the Alexa app so you can check it there."
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
 
         handler_input.response_builder.speak(final_speech).set_card(
