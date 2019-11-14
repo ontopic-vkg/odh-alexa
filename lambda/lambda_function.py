@@ -155,6 +155,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
             else:
+                logger.info("Inside request data")
                 final_speech += "The phone number of " + str(lodging_name) + " is "
                 for result in results["results"]["bindings"]:
                     phone_nr += str(result["phone"]["value"])
