@@ -31,8 +31,6 @@ SELECT ?phone WHERE {{
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
   FILTER (?posLabel = "{}"@de) .
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it') .
-  BIND(RAND() AS ?rand) .
-  FILTER(?rand < 0.10) .
 }} LIMIT 1"""
 
 Q_WINE = """PREFIX : <http://noi.example.org/ontology/odh#>
