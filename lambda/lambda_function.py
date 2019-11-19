@@ -236,7 +236,7 @@ class ThankIntentHandler(AbstractRequestHandler):
         
         speech = random.choice(data.THANK_RESPONSE)
 
-        handler_input.response_builder.speak(speech)
+        handler_input.response_builder.speak(speech).set_should_end_session(False)
         return handler_input.response_builder.response
 
 
