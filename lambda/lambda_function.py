@@ -83,6 +83,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         logger.info("Gave city value " + city)
         logger.info(" Gave lodging_type value " + lodging_type)
         
+        # add parameters to the query and run it on the VKG
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
         results = query_vkg(query_string)
         
