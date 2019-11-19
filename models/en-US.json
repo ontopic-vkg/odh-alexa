@@ -1,344 +1,356 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "data hub",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "AboutIntent",
-          "slots": [],
-          "samples": [
-            "tell me more about",
-            "about the odh",
-            "about the open data hub",
-            "about open data hub",
-            "about odh",
-            "about"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        },
-        {
-          "name": "WineSearchIntent",
-          "slots": [],
-          "samples": [
-            "do you know anything about wine",
-            "what wine should I buy for dinner",
-            "suggest me wine",
-            "Can you suggest me some south tyrolean wine",
-            "I would drink glady drink some wine",
-            "want some wine",
-            "like some wine",
-            "In the mood for drinking"
-          ]
-        },
-        {
-          "name": "LodgingSearchIntent",
-          "slots": [
-            {
-              "name": "city",
-              "type": "AMAZON.EUROPE_CITY",
-              "samples": [
-                "in the city of {city}",
-                "In {city}",
-                "{city}"
-              ]
-            },
-            {
-              "name": "lodgingType",
-              "type": "LodgingType",
-              "samples": [
-                "how about {nrLodgings} {lodgingType}",
-                "{nrLodgings} {lodgingType}",
-                "only {lodgingType}",
-                "I said {lodgingType}",
-                "search {lodgingType}",
-                "look for {lodgingType}",
-                "{lodgingType}"
-              ]
-            },
-            {
-              "name": "nrLodgings",
-              "type": "AMAZON.NUMBER"
-            }
-          ],
-          "samples": [
-            "Give me {nrLodgings} south tyrolean {lodgingType}",
-            "search for {nrLodgings} {lodgingType} in {city}",
-            "can i see some {lodgingType}",
-            "find me some {lodgingType}",
-            "can you find {lodgingType} in {city}",
-            "check for lodgings",
-            "i want to see {nrLodgings} {lodgingType}",
-            "can you show me {nrLodgings} {lodgingType} in {city}",
-            "i want to stay in {city} for a while",
-            "check {lodgingType} in {city}",
-            "{lodgingType} in {city}",
-            "show me some lodging options in {city}",
-            "spend time in {city}",
-            "lodging in south tyrol",
-            "spend a couple of days in South-Tyrol",
-            "stay in South Tyrol",
-            "I want to stay in South Tyrol for a while"
-          ]
-        }
-      ],
-      "types": [
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Campground",
-                "synonyms": [
-                  "camping",
-                  "campgrounds",
-                  "campground"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Bed and breakfast",
-                "synonyms": [
-                  "bed and breakfasts",
-                  "bed and breakfast",
-                  "bedandbreakfast"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Hostel",
-                "synonyms": [
-                  "Hostels",
-                  "hostels"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Hotel",
-                "synonyms": [
-                  "Hotels",
-                  "hotels"
-                ]
-              }
-            }
-          ],
-          "name": "LodgingType"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Bressanone",
-                "synonyms": [
-                  "Brixen",
-                  "bressanone"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Castelrotto",
-                "synonyms": [
-                  "castelrotto"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Brunico",
-                "synonyms": [
-                  "Bruneck"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Bolzano",
-                "synonyms": [
-                  "Bozen"
-                ]
-              }
-            }
-          ],
-          "name": "AMAZON.EUROPE_CITY"
-        }
-      ]
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "WineSearchIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": []
-        },
-        {
-          "name": "LodgingSearchIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "city",
-              "type": "AMAZON.EUROPE_CITY",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.845974915676.513497008659"
-              }
-            },
-            {
-              "name": "lodgingType",
-              "type": "LodgingType",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.1360723212528.1448803706784"
-              },
-              "validations": [
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "data hub",
+            "intents": [
                 {
-                  "type": "hasEntityResolutionMatch",
-                  "prompt": "Slot.Validation.1360723212528.1448803706784.415132319023"
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AboutIntent",
+                    "slots": [],
+                    "samples": [
+                        "tell me more about",
+                        "about the odh",
+                        "about the open data hub",
+                        "about open data hub",
+                        "about odh",
+                        "about"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "WineSearchIntent",
+                    "slots": [],
+                    "samples": [
+                        "do you know anything about wine",
+                        "what wine should I buy for dinner",
+                        "suggest me wine",
+                        "Can you suggest me some south tyrolean wine",
+                        "I would drink glady drink some wine",
+                        "want some wine",
+                        "like some wine",
+                        "In the mood for drinking"
+                    ]
+                },
+                {
+                    "name": "LodgingSearchIntent",
+                    "slots": [
+                        {
+                            "name": "city",
+                            "type": "AMAZON.EUROPE_CITY",
+                            "samples": [
+                                "in the city of {city}",
+                                "In {city}",
+                                "{city}"
+                            ]
+                        },
+                        {
+                            "name": "lodgingType",
+                            "type": "LodgingType",
+                            "samples": [
+                                "how about {lodgingType}",
+                                "only {lodgingType}",
+                                "I said {lodgingType}",
+                                "search {lodgingType}",
+                                "look for {lodgingType}",
+                                "{lodgingType}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{lodgingType}",
+                        "i want to sleep in {city} this week",
+                        "i want to sleep in {city} tonight",
+                        "Give me south tyrolean {lodgingType}",
+                        "search for {lodgingType} in {city}",
+                        "can i see some {lodgingType}",
+                        "find me some {lodgingType}",
+                        "can you find {lodgingType} in {city}",
+                        "check for lodgings",
+                        "i want to see {lodgingType}",
+                        "can you show me {lodgingType} in {city}",
+                        "i want to stay in {city} for a while",
+                        "check {lodgingType} in {city}",
+                        "{lodgingType} in {city}",
+                        "show me some lodging options in {city}",
+                        "spend time in {city}",
+                        "lodging in south tyrol",
+                        "spend a couple of days in South-Tyrol",
+                        "stay in South Tyrol",
+                        "I want to stay in South Tyrol for a while"
+                    ]
+                },
+                {
+                    "name": "ThankIntent",
+                    "slots": [],
+                    "samples": [
+                        "tyyy",
+                        "ty",
+                        "that was awesome",
+                        "that was very helpful",
+                        "thank you very much",
+                        "thanks a lot",
+                        "thanks",
+                        "thank you"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
                 }
-              ]
+            ],
+            "types": [
+                {
+                    "name": "LodgingType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Campground",
+                                "synonyms": [
+                                    "camping",
+                                    "campgrounds",
+                                    "campground"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bed and breakfast",
+                                "synonyms": [
+                                    "bed and breakfasts",
+                                    "bed and breakfast",
+                                    "bedandbreakfast"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Hostel",
+                                "synonyms": [
+                                    "Hostels",
+                                    "hostels"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Hotel",
+                                "synonyms": [
+                                    "Hotels",
+                                    "hotels"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AMAZON.EUROPE_CITY",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Bressanone",
+                                "synonyms": [
+                                    "Brixen",
+                                    "bressanone"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Castelrotto",
+                                "synonyms": [
+                                    "castelrotto"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Brunico",
+                                "synonyms": [
+                                    "Bruneck"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bolzano",
+                                "synonyms": [
+                                    "Bozen"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "WineSearchIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "LodgingSearchIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "city",
+                            "type": "AMAZON.EUROPE_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.845974915676.513497008659"
+                            }
+                        },
+                        {
+                            "name": "lodgingType",
+                            "type": "LodgingType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1360723212528.1448803706784"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1360723212528.1448803706784.415132319023"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.700006615807.71941201057",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Could you tell me in which city I should look for events?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What city was that again?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "In which South-Tyrolean city should I check for events?"
+                    }
+                ]
             },
             {
-              "name": "nrLodgings",
-              "type": "AMAZON.NUMBER",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
+                "id": "Elicit.Slot.700006615807.599589384727",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What's the number of events you want me to check?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Can you tell me how many events you are interested in?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many events should I look for?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.700006615807.599589384727.714643349897",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I can't search for zero events. Try again with another number"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.265603688106.81246831636",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How many should I look for?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many different types would you like to see?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How many wine types do you want me to show you?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.265603688106.81246831636.1128287065761",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Could you please give me a number that is greater than zero?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I can't search for less then one wine"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1360723212528.1448803706784",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry what did you tell me to search for, a hotel, hostel or a Bed and Breakfast?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Would you like to stay in a hotel, a hostel or a Bed and Breakfast?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1360723212528.1448803706784.415132319023",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I can only search for hotels, hostels or bed and breakfast so far"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.845974915676.513497008659",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which city?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "In which city do you want to stay?"
+                    }
+                ]
             }
-          ]
-        }
-      ],
-      "delegationStrategy": "ALWAYS"
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.700006615807.71941201057",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Could you tell me in which city I should look for events?"
-          },
-          {
-            "type": "PlainText",
-            "value": "What city was that again?"
-          },
-          {
-            "type": "PlainText",
-            "value": "In which South-Tyrolean city should I check for events?"
-          }
         ]
-      },
-      {
-        "id": "Elicit.Slot.700006615807.599589384727",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "What's the number of events you want me to check?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Can you tell me how many events you are interested in?"
-          },
-          {
-            "type": "PlainText",
-            "value": "How many events should I look for?"
-          }
-        ]
-      },
-      {
-        "id": "Slot.Validation.700006615807.599589384727.714643349897",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "I can't search for zero events. Try again with another number"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.265603688106.81246831636",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "How many should I look for?"
-          },
-          {
-            "type": "PlainText",
-            "value": "How many different types would you like to see?"
-          },
-          {
-            "type": "PlainText",
-            "value": "How many wine types do you want me to show you?"
-          }
-        ]
-      },
-      {
-        "id": "Slot.Validation.265603688106.81246831636.1128287065761",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Could you please give me a number that is greater than zero?"
-          },
-          {
-            "type": "PlainText",
-            "value": "I can't search for less then one wine"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.1360723212528.1448803706784",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Sorry what did you tell me to search for, a hotel, hostel or a Bed and Breakfast?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Would you like to stay in a hotel, a hostel or a Bed and Breakfast?"
-          }
-        ]
-      },
-      {
-        "id": "Slot.Validation.1360723212528.1448803706784.415132319023",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "I can only search for hotels, hostels or bed and breakfast so far"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.845974915676.513497008659",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "What city?"
-          },
-          {
-            "type": "PlainText",
-            "value": "In which city would you want to stay?"
-          }
-        ]
-      }
-    ]
-  },
-  "version": "4"
+    }
 }
