@@ -108,7 +108,9 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         
         session_attr["lodging_name"] = lodging_name
         session_attr["lodging_type"] = lodging_type
+        
         logger.info("Session hotel name " + str(session_attr["lodging_name"]))
+        
         final_speech += "Would you like to know the phone number so you can call?"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
