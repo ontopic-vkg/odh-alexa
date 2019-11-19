@@ -83,15 +83,15 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         logger.info("Gave city value " + city)
         logger.info(" Gave lodging_type value " + lodging_type)
         
+        query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
+        results = query_vkg(query_string)
+        
         final_speech = ""
         query_string = ""
         lodging_name = ""
         
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
-        logger.info(query_string)
         
-        results = query_vkg(query_string)
         
         # Format the answer for the user
         if (len(results["results"]["bindings"]) == 0):
