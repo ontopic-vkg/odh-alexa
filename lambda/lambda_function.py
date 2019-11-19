@@ -53,7 +53,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # lambda log
-        logger.info("In LodgingSearchIntent handle function")
+        logger.info("User called LodgingSearchIntent")
         
         # get slots from user input
         slots = handler_input.request_envelope.request.intent.slots
