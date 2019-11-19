@@ -90,7 +90,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
         logger.info(query_string)
-
+        
+        results = query_vkg
             
         try:
             sparql_endpoint.setQuery(query_string)
@@ -358,7 +359,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         )
 
 # Aux. function to perform the queries. Helps with keeping the code cleanu
-def query_vkg(query, params):
+def query_vkg(query_String):
     try:
         sparql_endpoint.setQuery(query_string)
         sparql_endpoint.setReturnFormat(JSON)
