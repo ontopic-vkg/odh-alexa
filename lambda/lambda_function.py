@@ -126,11 +126,14 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("In YesMoreLodgingInfoIntentHandler")
+        
 
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         lodging_name = session_attr["lodging_name"]
         lodging_type = session_attr["lodging_type"]
+        
+        logger.info("user asked for more info on the lodging " + lodging_type + " " + lodging_name)
         
         query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         results = query_vkg(query_string)
