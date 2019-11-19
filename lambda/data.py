@@ -7,7 +7,7 @@ ABOUT = "Open Data Hub is your access point to South Tyrol’s relevant data. Th
 STOP = "Okay, see you next time!"
 FALLBACK = "Hmmm I can't help you with that. I can help you learn about the open data hub or discover hotels though. Wanna try?"
 THANK_RESPONSE = ["No worries.", "I'm here to help", "Glad I could help."]
-GENERIC_REPROMPT = ["What can I help you with?", "I didn't get that, can you repeat?", "Hmmm. I don't understand you"]
+GENERIC_REPROMPT = ["What can I help you with?", "I didn't get that, can you repeat?", "Hmmm. I don't understand you."]
 
 # SPARQL QUERIES
 Q_RANDOM_LODGING_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
