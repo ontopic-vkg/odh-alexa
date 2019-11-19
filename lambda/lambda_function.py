@@ -357,6 +357,18 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
                 .response
         )
 
+# Aux. function to perform the queries. Helps with keeping the code cleanu
+def query_vkg(query, params):
+    try:
+        sparql_endpoint.setQuery(query_string)
+        sparql_endpoint.setReturnFormat(JSON)
+        results = sparql_endpoint.query().convert()
+        return results
+    except Exception:
+        handler_input.response_builder.speak("There was a problem with the service request. Please try again")
+        return handler_input.response_builder.response
+    
+
 
 # The SkillBuilder object acts as the entry point for your skill, routing all request and response
 # payloads to the handlers above. Make sure any new handlers or interceptors you've
