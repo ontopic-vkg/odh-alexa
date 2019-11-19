@@ -193,7 +193,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         logger.info("In WineSearchIntentHandler")
         
         query_string = str(data.Q_WINE)
-        result = query_vkg(query_string)
+        results = query_vkg(query_string)
             
         # prepare result statement
         final_speech = ""
