@@ -352,7 +352,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
                 .response
         )
 
-# Aux. function to perform the queries. Helps with keeping the code cleanu
+# Aux. function to perform the queries. Helps with keeping the code clean
 def query_vkg(query_string):
     try:
         sparql_endpoint.setQuery(query_string)
