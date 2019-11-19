@@ -64,7 +64,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
 
         # Init the variables we'll use to parametrize our queries
         city = ""
-        nr_lodgings = "" 
         lodging_type = ""
         
         # Get the values from the slots and prepare the parameters to pass to the queries
