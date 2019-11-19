@@ -338,7 +338,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
                 .response
         )
 
-# Aux. function to perform the queries. Helps with keeping the code clean
+# Aux. function to perform the queries we want on the VKG. Helps with keeping the code clean
 def query_vkg(query_string):
     
     try:
