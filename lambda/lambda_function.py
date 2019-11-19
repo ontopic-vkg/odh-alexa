@@ -189,10 +189,13 @@ class WineSearchIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # lambda log
         logger.info("In WineSearchIntentHandler")
+        
+        query_string = str(data.Q_WINE)
+        result = query_vkg(query_string)
             
         # prepare result statement
         final_speech = ""
-        query_string = str(data.Q_WINE)
+        
         
         try:
             sparql_endpoint.setQuery(query_string)
