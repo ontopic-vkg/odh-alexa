@@ -130,9 +130,9 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
-
         lodging_name = session_attr["lodging_name"]
         lodging_type = session_attr["lodging_type"]
+        
         query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         results = query_vkg(query_string)
 
