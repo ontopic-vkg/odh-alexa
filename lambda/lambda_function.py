@@ -353,7 +353,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         )
 
 # Aux. function to perform the queries. Helps with keeping the code cleanu
-def query_vkg(query_String):
+def query_vkg(query_string):
     try:
         sparql_endpoint.setQuery(query_string)
         sparql_endpoint.setReturnFormat(JSON)
