@@ -354,11 +354,14 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
 # Aux. function to perform the queries. Helps with keeping the code clean
 def query_vkg(query_string):
+    logger.info("Inside aux")
     try:
+        logger.info("Exectuing query: " + query_string)
         sparql_endpoint.setQuery(query_string)
         sparql_endpoint.setReturnFormat(JSON)
         results = sparql_endpoint.query().convert()
         return results
+        
     except Exception:
         raise Exception("There was a problem with the service request.")
         #return handler_input.response_builder.response
