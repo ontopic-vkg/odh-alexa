@@ -177,6 +177,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("In NoMoreLodgingInfoIntentHandler")
+        logger.info("user did not need more info on the lodging ")
 
         final_speech = "Ok then, hope I was helpful."
         handler_input.response_builder.speak(final_speech).set_should_end_session(
