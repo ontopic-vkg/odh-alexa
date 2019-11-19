@@ -365,8 +365,7 @@ def query_vkg(query_string):
         
     except Exception:
         raise Exception("There was a problem with the service request.")
-        #return handler_input.response_builder.response
-    
+
 
 
 # The SkillBuilder object acts as the entry point for your skill, routing all request and response
