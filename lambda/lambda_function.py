@@ -126,7 +126,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("In NoMoreLodgingInfoIntentHandler")
+        logger.info("In YesMoreLodgingInfoIntentHandler")
 
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
