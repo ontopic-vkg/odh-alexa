@@ -133,32 +133,24 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         lodging_name = session_attr["lodging_name"]
         lodging_type = session_attr["lodging_type"]
-        
-        #final_speech = "Ok here are the details for " + str(lodging_name) + " which is a " + str(lodging_type)
-        
+        query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
+        results = query_vkg(query_string)
+
+        # Format the answer for the user
         final_speech = ""
         phone_nr = ""
-        query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
-        
-        try:
-            sparql_endpoint.setQuery(query_string)
-            sparql_endpoint.setReturnFormat(JSON)
-            results = sparql_endpoint.query().convert()
 
-            # Format the answer for the user
-            if (len(results["results"]["bindings"]) == 0):
-                final_speech += " I couldn't find any more information, sorry. "
-                handler_input.response_builder.speak(final_speech)
-                return handler_input.response_builder.response
-            else:
-                logger.info("Inside request data")
-                final_speech += "The phone number of " + str(lodging_name) + " is "
-                for result in results["results"]["bindings"]:
-                    phone_nr += str(result["phone"]["value"])
-                    final_speech += str(result["phone"]["value"]) + ". "
-        except Exception:
-            handler_input.response_builder.speak("There was a problem with the service request. ")
+        if (len(results["results"]["bindings"]) == 0):
+            final_speech += " I couldn't find any more information, sorry. "
+            handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
+        else:
+            logger.info("Inside request data")
+            final_speech += "The phone number of " + str(lodging_name) + " is "
+            for result in results["results"]["bindings"]:
+                phone_nr += str(result["phone"]["value"])
+                final_speech += str(result["phone"]["value"]) + ". "
+        
 
         final_speech += "I'm sending you this info also on the Alexa app so you can check it there."
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
