@@ -360,6 +360,7 @@ def query_vkg(query_string):
         sparql_endpoint.setQuery(query_string)
         sparql_endpoint.setReturnFormat(JSON)
         results = sparql_endpoint.query().convert()
+        logger.info("got results: " + str(results))
         return results
         
     except Exception:
