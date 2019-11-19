@@ -36,7 +36,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
 
-        logger.info("Launching skill...") 
+        logger.info("User launched the skill")
         
         speech = random.choice(data.WELCOME)
         speech += " " + data.HELP
