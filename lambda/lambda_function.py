@@ -360,8 +360,8 @@ def query_vkg(query_string):
         results = sparql_endpoint.query().convert()
         return results
     except Exception:
-        handler_input.response_builder.speak("There was a problem with the service request. Please try again")
-        return handler_input.response_builder.response
+        raise Exception("There was a problem with the service request.")
+        #return handler_input.response_builder.response
     
 
 
