@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # sparlq endpoint
-sparql_endpoint = SPARQLWrapper("https://99f4d3e7.ngrok.io")
+sparql_endpoint = SPARQLWrapper("https://99f4d3e7.ngrok.io/sparlq")
 
 
 class LaunchRequestHandler(AbstractRequestHandler):
