@@ -78,7 +78,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         else:
             lodging_type = "BedAndBreakfast"
         
-        # Example of logging that can truly be useful for debugging
+        # log the slots the user gave for insight
         logger.info("user requested city " + city)
         logger.info("user request lodging type " + lodging_type)
         
