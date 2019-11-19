@@ -176,7 +176,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In NoMoreLodgingInfoIntentHandler")
 
-        final_speech = "Ok then, hope I was of use."
+        final_speech = "Ok then, hope I was helpful."
         handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
