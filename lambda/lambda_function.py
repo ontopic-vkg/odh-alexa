@@ -152,7 +152,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                 final_speech += str(result["phone"]["value"]) + ". "
         
 
-        final_speech += "I'm sending you this info also on the Alexa app so you can check it there" \
+        final_speech += "I'm sending you this info also on the Alexa app so you can check it there." \
         + " Have a good time and see you later."
         
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
