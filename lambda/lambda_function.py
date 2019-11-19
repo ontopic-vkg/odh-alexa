@@ -52,7 +52,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("LodgingSearchIntent")(handler_input)
 
     def handle(self, handler_input):
-        # lambda log
+        # log intent that was called for insight
         logger.info("User called LodgingSearchIntent")
         
         # get slots from user input
