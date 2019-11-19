@@ -79,8 +79,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             lodging_type = "BedAndBreakfast"
         
         # Example of logging that can truly be useful for debugging
-        logger.info("Gave city value " + city)
-        logger.info(" Gave lodging_type value " + lodging_type)
+        logger.info("user requested city " + city)
+        logger.info("user request lodging type " + lodging_type)
         
         # add parameters to the query and run it on the VKG
         query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city, nr_lodgings)
