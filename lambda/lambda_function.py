@@ -93,8 +93,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         
-        
-        # Format the answer for the user
+        # Format the final answer speech for the user
         if (len(results["results"]["bindings"]) == 0):
             final_speech += " I found no results for what you asked, sorry. "
             handler_input.response_builder.speak(final_speech)
