@@ -41,7 +41,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         speech = random.choice(data.WELCOME)
         speech += " " + data.HELP
         handler_input.response_builder.speak(speech)
-        handler_input.response_builder.ask(data.GENERIC_REPROMPT)
+        handler_input.response_builder.ask(random.choice(data.GENERIC_REPROMPT))
         return handler_input.response_builder.response
 
 
@@ -218,10 +218,9 @@ class AboutIntentHandler(AbstractRequestHandler):
         logger.info("In AboutIntentHandler")
         
         speech = data.ABOUT
-        speech += " " + data.GENERIC_REPROMPT
 
         handler_input.response_builder.speak(speech)
-        handler_input.response_builder.ask(data.GENERIC_REPROMPT)
+        handler_input.response_builder.ask(random.choice(data.GENERIC_REPROMPT))
         return handler_input.response_builder.response
 
 class ThankIntentHandler(AbstractRequestHandler):
