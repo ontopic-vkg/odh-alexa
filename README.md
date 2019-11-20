@@ -5,17 +5,13 @@ This repository provides the main components to build a functiong Alexa voice sk
 
 ## Project Information
 
-In the repository root we can distinguish the three main components that make up an Alexa Skill:
+In the repository root we can distinguish the two main components that make up an Alexa Skill:
 
-1. skill.json
-
-     This file is the skill manifest, which basically represents the JSON representation of your skill, and provides Alexa with all of the metadata required. Note that this is unique for every skill so you will have to replace this file with the one corrisponding to your skill.
-
-2. models
+1. models
 
     The models folder contains inside a .json file named after the locale specification. This file is the interaction model of our skill, basically where we define the skill logic and also the VI (voice interface). You can edit the .json file to make changes to the model but we highly suggest using the Alexa developer console and loading the file there so that you can rely on the GUI, it makes the process much simpler. More on skill models can be found [here](https://developer.amazon.com/docs/custom-skills/create-the-interaction-model-for-your-skill.html) and [here](https://developer.amazon.com/docs/devconsole/create-a-skill-and-choose-the-interaction-model.html).
 
-3. lambda
+2. lambda
 
     This directory contains the code which handles how Alexa responds to intents defined in the interaction model explained above. You can see that there are four files inside:
     - data.py:
