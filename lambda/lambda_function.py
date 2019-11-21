@@ -353,7 +353,9 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
                 .response
         )
 
-# Aux. function to perform the queries we want on the VKG. Helps with keeping the code clean
+# Auxilliary functions
+
+# Performs the queries we want on the VKG
 def query_vkg(query_string):
     try:
         sparql_endpoint.setQuery(query_string)
@@ -362,6 +364,20 @@ def query_vkg(query_string):
         return results
     except Exception:
         raise Exception("There was a problem with the service request.")
+
+# Check if the current device has a screen display
+def supports_display(handler_input):
+    # type: (HandlerInput) -> bool
+    """Check if display is supported by the skill."""
+    try:
+        if hasattr(
+                handler_input.request_envelope.context.system.device.
+                        supported_interfaces, 'display'):
+            return (
+                    handler_input.request_envelope.context.system.device.
+                    supported_interfaces.display is not None)
+    except:
+        return False
 
 
 
