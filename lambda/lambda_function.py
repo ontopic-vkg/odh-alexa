@@ -162,7 +162,11 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         logger.info("This devices supports display is: " + str(dev_supports_display(handler_input)) )
         
         #handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
-        handler_input.response_builder.add_directive(RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=card_info)))
+        handler_input.response_builder.add_directive(
+            RenderTemplateDirective(
+                BodyTemplate1(title=data.SKILL_NAME, text_content=card_info)
+                )
+            ).set_should_end_session(True)
 
         #if (dev_supports_display(handler_input)):
         #    logger.info("Inside if for display")
