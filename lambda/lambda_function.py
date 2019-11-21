@@ -172,7 +172,9 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         #if (dev_supports_display(handler_input)):
         #    logger.info("Inside if for display")
         #else:
+        logger.info("before speak command")
         handler_input.response_builder.speak(final_speech)
+        logger.info("before return, speech was added sucessfully ")
         return handler_input.response_builder.response
 
 
