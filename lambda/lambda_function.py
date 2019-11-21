@@ -9,7 +9,6 @@ import ask_sdk_core.utils as ask_utils
 # from imports
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler, AbstractExceptionHandler, AbstractResponseInterceptor, AbstractRequestInterceptor
-from ask_sdk_core.dispatch_components import 
 from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import ui, Response
 from ask_sdk_model.ui import SimpleCard
