@@ -368,7 +368,7 @@ def query_vkg(query_string):
         raise Exception("There was a problem with the service request.")
 
 # Check if the current device has a screen display
-def supports_display(handler_input):
+def dev_supports_display(handler_input):
     # type: (HandlerInput) -> bool
     """Check if display is supported by the skill."""
     try:
