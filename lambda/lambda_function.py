@@ -129,7 +129,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In YesMoreLodgingInfoIntentHandler")
         
-
+        response_builder = handler_input.response_builder
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         lodging_name = session_attr["lodging_name"]
@@ -146,8 +146,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         if (len(results["results"]["bindings"]) == 0):
             final_speech += " I couldn't find any more information, sorry. "
-            handler_input.response_builder.speak(final_speech)
-            return handler_input.response_builder.response
+            response_builder.speak(final_speech)
+            return response_builder.response
         else:
             logger.info("Inside request data")
             final_speech += "The phone number of " + str(lodging_name) + " is "
