@@ -169,6 +169,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                         title="Open Data Hub",
                         text_content=card_info
                     )))
+        else:
+            response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
         return response_builder.speak(speech).response
 
