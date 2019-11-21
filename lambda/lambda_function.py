@@ -166,7 +166,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
                 BodyTemplate1(title=data.SKILL_NAME, text_content=card_info)
             )).set_should_end_session(True)
         
-        logger.info()
+        logger.info(handler_input.response_builder.to_str())
 
         #if (dev_supports_display(handler_input)):
         #    logger.info("Inside if for display")
