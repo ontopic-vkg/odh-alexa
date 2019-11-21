@@ -161,51 +161,21 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
 
+        if util.supports_display(handler_input):
+            response_builder.add_directive(
+                RenderTemplateDirective(
+                    BodyTemplate1(
+                        back_button=BackButtonBehavior.HIDDEN,
+                        title="Open Data Hub",
+                        text_content=card_info
+                    )))
+
+            #return response_builder.speak(speech).response
+
         handler_input.response_builder.speak(final_speech).set_card(
             SimpleCard(
                 title=data.SKILL_NAME,
                 content=card_info)).set_should_end_session(True)
-                
-                
-                
-                
-        if data.USE_CARDS_FLAG:
-            item = attr["quiz_item"]
-            response_builder.set_card(
-                ui.StandardCard(
-                    title="Question #1",
-                    text=data.START_QUIZ_MESSAGE + question,
-                    image=ui.Image(
-                        small_image_url=util.get_small_image(item),
-                        large_image_url=util.get_large_image(item)
-                    )))
-
-        if util.supports_display(handler_input):
-            item = attr["quiz_item"]
-            item_attr = attr["quiz_attr"]
-            title = "Question #{}".format(str(attr["counter"]))
-            background_img = Image(
-                sources=[ImageInstance(
-                    url=util.get_image(
-                        ht=1024, wd=600, label=item["abbreviation"]))])
-            item_list = []
-            for ans in util.get_multiple_choice_answers(
-                    item, item_attr, data.STATES_LIST):
-                item_list.append(ListItem(
-                    token=ans,
-                    text_content=get_plain_text_content(primary_text=ans)))
-
-            response_builder.add_directive(
-                RenderTemplateDirective(
-                    ListTemplate1(
-                        token="Question",
-                        back_button=BackButtonBehavior.HIDDEN,
-                        background_image=background_img,
-                        title=title,
-                        list_items=item_list)))
-
-        #return response_builder.response
-        return handler_input.response_builder.response
 
 
 class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
