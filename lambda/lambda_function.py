@@ -160,8 +160,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         + " Have a good time and see you later."
         
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
-
-        if dev_supports_display(handler_input):
+        logger.info(dev_supports_display(handler_input))
+        if (dev_supports_display(handler_input)):
             response_builder.add_directive(
                 RenderTemplateDirective(
                     BodyTemplate1(
