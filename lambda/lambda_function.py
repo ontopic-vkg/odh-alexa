@@ -163,12 +163,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         logger.info("This devices supports display is: " + str(dev_supports_display(handler_input)) )
         
         if (dev_supports_display(handler_input)):
-            response_builder.add_directive(
-                RenderTemplateDirective(
-                    BodyTemplate1(
-                        title="Open Data Hub",
-                        text_content=card_info
-                    )))
+            response_builder.add_directive(RenderTemplateDirective(BodyTemplate1(title="Open Data Hub", text_content=card_info)))
         else:
             response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
