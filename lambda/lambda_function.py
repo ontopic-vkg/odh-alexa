@@ -166,7 +166,6 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
             response_builder.add_directive(
                 RenderTemplateDirective(
                     BodyTemplate1(
-                        back_button=BackButtonBehavior.HIDDEN,
                         title="Open Data Hub",
                         text_content=card_info
                     )))
