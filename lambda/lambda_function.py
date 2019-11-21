@@ -169,7 +169,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         else:
             response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
-        return response_builder.speak(final_speech).response
+        response_builder.speak(final_speech)
+        return response_builder.response
 
         #handler_input.response_builder.speak(final_speech).set_card(
         #    SimpleCard(
