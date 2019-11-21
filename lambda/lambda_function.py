@@ -161,11 +161,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
         logger.info("This devices supports display is: " + str(dev_supports_display(handler_input)) )
         
-        if (dev_supports_display(handler_input)):
-            logger.info("Inside if for display")
-            handler_input.response_builder.add_directive(RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=card_info)))
-        else:
-            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
+        handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
