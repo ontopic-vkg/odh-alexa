@@ -129,7 +129,6 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In YesMoreLodgingInfoIntentHandler")
         
-        response_builder = handler_input.response_builder
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         lodging_name = session_attr["lodging_name"]
@@ -146,8 +145,8 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         if (len(results["results"]["bindings"]) == 0):
             final_speech += " I couldn't find any more information, sorry. "
-            response_builder.speak(final_speech)
-            return response_builder.response
+            handler_input.response_builder.speak(final_speech)
+            return handler_input.response_builder.response
         else:
             logger.info("Inside request data")
             final_speech += "The phone number of " + str(lodging_name) + " is "
@@ -165,17 +164,12 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         if (dev_supports_display(handler_input)):
             logger.info("Inside if for display")
             
-            response_builder.add_directive(RenderTemplateDirective(BodyTemplate1(title="Open Data Hub", text_content=card_info)))
+            handler_input.response_builder.add_directive(RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, content=card_info)))
         else:
-            response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
+            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
-        response_builder.speak(final_speech)
-        return response_builder.response
-
-        #handler_input.response_builder.speak(final_speech).set_card(
-        #    SimpleCard(
-        #        title=data.SKILL_NAME,
-        #        content=card_info)).set_should_end_session(True)
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
 
 
 class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
