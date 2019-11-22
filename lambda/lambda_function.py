@@ -163,6 +163,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         if (dev_supports_display(handler_input)):
             primary_text = get_rich_text_content(card_info)
+            final_speech += "Looks like you have a display, you can also check the phone number there. Have a good time and see you later."
 
             handler_input.response_builder.add_directive(
                 RenderTemplateDirective(
