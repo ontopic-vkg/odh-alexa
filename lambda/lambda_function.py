@@ -217,7 +217,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         else:
             for result in results["results"]["bindings"]:
                 wine_name = str(result["name"]["value"])
-                wine_award_name = str(esult["name"]["value"])
+                wine_award_name = str(result["name"]["value"])
                 final_speech += "I would suggest a bottle of <lang xml:lang='de-DE'>" + str(result["name"]["value"]) + \
                 "</lang>. It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
 
