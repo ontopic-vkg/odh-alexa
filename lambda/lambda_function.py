@@ -112,10 +112,10 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
                     lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
-            session_attr["lodging_name"] = lodging_name
-            session_attr["lodging_type"] = lodging_type
+            #session_attr["lodging_name"] = lodging_name
+            #session_attr["lodging_type"] = lodging_type
         
-        logger.info("Session hotel name " + str(session_attr["lodging_name"]))
+        #logger.info("Session hotel name " + str(session_attr["lodging_name"]))
         logger.info("Tuple to put into session data " + str(lodging_tuples))
         final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
         just tell me which number the hotel was."
