@@ -142,7 +142,7 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         logger.info("user asked for more info on lodging number" + user_lodging_nr)
         
         #query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
-        results = query_vkg(query_string)
+        #results = query_vkg(query_string)
 
         # Format the final answer speech for the user
         final_speech = ""
