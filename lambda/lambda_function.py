@@ -85,30 +85,34 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         # add parameters to the query and run it on the VKG
         total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
         hotel_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
-        total_lodgings_query_string = query_vkg(total_lodgings_query_string)
+        total_lodgings_results = query_vkg(total_lodgings_query_string)
         hotel_results = query_vkg(hotel_query_string)
         
         final_speech = ""
-        query_string = ""
         lodging_name = ""
         
-        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        
         # Format the final answer speech for the user
-        if (len(results["results"]["bindings"]) == 0):
+
+        
+        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+
+        if (len(total_lodgings_results["results"]["bindings"]) == 0):
             final_speech += " I found no results for what you asked, sorry. "
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            final_speech += " I found one. "
-            for result in results["results"]["bindings"]:
+            for nr_lodgings in total_lodgings_results["results"]["bindings"]:
+                final_speech += " I found" + nr_hotels["nrLodgings"]["value"] + " in total. "
+
+            final_speech += "Here are 3 suggestions: "
+            for count, result in enumerate(results["results"]["bindings"]):
                 lodging_name = str(result["posLabel"]["value"])
-                final_speech += "It's called <lang xml:lang='de-DE'>" + \
+                final_speech += "Number " + count +  "is called <lang xml:lang='de-DE'>" + \
                                 str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                 + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
-        
-        session_attr["lodging_name"] = lodging_name
-        session_attr["lodging_type"] = lodging_type
+
+            session_attr["lodging_name"] = lodging_name
+            session_attr["lodging_type"] = lodging_type
         
         logger.info("Session hotel name " + str(session_attr["lodging_name"]))
         
