@@ -122,7 +122,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
+class GetMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
