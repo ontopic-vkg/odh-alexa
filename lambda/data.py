@@ -20,7 +20,7 @@ SELECT ?posLabel ?addr ?loc WHERE {{
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
   BIND(RAND() AS ?rand) .
   FILTER(?rand < 0.10) .
-}} LIMIT 1"""
+}} LIMIT 3"""
 
 Q_LODGING_INFO = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
