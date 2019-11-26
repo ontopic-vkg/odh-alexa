@@ -144,7 +144,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         final_speech = ""
         phone_nr = ""
 
-        if (len(lodgings_detail_list) < user_lodging_nr):
+        if (len(lodgings_detail_list) < int(user_lodging_nr)):
             final_speech += "I don't have any info on that because I didn't mention that number. \
             Please try with one of the numbers I mentioned before"
             handler_input.response_builder.speak(final_speech)
