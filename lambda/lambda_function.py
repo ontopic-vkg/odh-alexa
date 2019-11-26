@@ -252,6 +252,8 @@ class GetWineAwardNameIntentHandler(AbstractRequestHandler):
         final_speech = "The award that " + wine_and_award[0] + " won was the " + wine_and_award[1] + " award. \
         Pretty cool huh?"
         
+        session_attr["wine_and_award"] = None
+        
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
