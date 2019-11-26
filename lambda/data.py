@@ -15,7 +15,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
 SELECT (COUNT(?h) as ?nrLodgings) WHERE {{
-  ?h a schema:Hotel ; schema:name ?posLabel ; schema:address ?a .
+  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a .
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
 }}"""
