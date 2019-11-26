@@ -87,8 +87,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
         total_lodgings_results = query_vkg(total_lodgings_query_string)
         lodging_results = query_vkg(lodging_query_string)
-        logger.info(lodging_results["results"]["bindings"])
-        
+
         final_speech = ""
         lodging_name = ""
         
