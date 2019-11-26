@@ -108,8 +108,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 for count, result in enumerate(lodging_results["results"]["bindings"]):
                     lodging_name = str(result["posLabel"]["value"])
                     lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + \
-                                    str(result["posLabel"]["value"]) + "</lang>. "
+                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
                     lodging_tuples.append = (lodging_name, lodging_address)
             
             session_attr["lodging_name"] = lodging_name
