@@ -102,7 +102,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             return handler_input.response_builder.response
         else:
             for nr_lodgings in total_lodgings_results["results"]["bindings"]:
-                final_speech += " I found" + nr_hotels["nrLodgings"]["value"] + " in total. "
+                final_speech += " I found" + nr_lodgings["nrLodgings"]["value"] + " in total. "
 
             final_speech += "Here are 3 suggestions: "
             for count, result in enumerate(lodging_results["results"]["bindings"]):
