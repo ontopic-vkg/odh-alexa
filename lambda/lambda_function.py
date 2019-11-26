@@ -209,12 +209,14 @@ class WineSearchIntentHandler(AbstractRequestHandler):
             
         # prepare result statement
         final_speech = ""
+        wine_name = ""
             
         # Format the answer for the user
         if (len(results["results"]["bindings"]) == 0):
             final_speech += " I found no results for what you asked, sorry. "
         else:
             for result in results["results"]["bindings"]:
+                wine_name = str(result["name"]["value"])
                 final_speech += "I would suggest a bottle of <lang xml:lang='de-DE'>" + str(result["name"]["value"]) + \
                 "</lang>. It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
 
