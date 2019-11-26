@@ -87,6 +87,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
         total_lodgings_results = query_vkg(total_lodgings_query_string)
         lodging_results = query_vkg(lodging_query_string)
+        logger.info(lodging_results["results"]["bindings"])
         
         final_speech = ""
         lodging_name = ""
@@ -105,7 +106,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are 3 suggestions: "
                 for count, result in enumerate(lodging_results["results"]["bindings"]):
                     lodging_name = str(result["posLabel"]["value"])
-                    final_speech += "Number " + str(count) +  " is called <lang xml:lang='de-DE'>" + \
+                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + \
                                     str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                     + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
 
