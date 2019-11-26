@@ -29,7 +29,7 @@ SELECT ?posLabel ?addr ?loc ?phone WHERE {{
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
   BIND(RAND() AS ?rand) .
-  FILTER(?rand < 0.10) .
+  FILTER(?rand < 0.15) .
 }} LIMIT 3"""
 
 Q_LODGING_INFO = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
