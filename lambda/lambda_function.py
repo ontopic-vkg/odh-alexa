@@ -108,6 +108,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 for count, result in enumerate(lodging_results["results"]["bindings"]):
                     lodging_name = str(result["posLabel"]["value"])
                     lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+                    lodging_phone = str(result["phoneNr"]["value"])
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
                     lodging_tuples.append((count+1, lodging_name, lodging_address))
             
