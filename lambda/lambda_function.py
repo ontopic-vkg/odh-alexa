@@ -105,7 +105,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found" + nr_hotels["nrLodgings"]["value"] + " in total. "
 
             final_speech += "Here are 3 suggestions: "
-            for count, result in enumerate(results["results"]["bindings"]):
+            for count, result in enumerate(lodging_results["results"]["bindings"]):
                 lodging_name = str(result["posLabel"]["value"])
                 final_speech += "Number " + count +  "is called <lang xml:lang='de-DE'>" + \
                                 str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
