@@ -112,9 +112,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                     lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
         session_attr["lodgings_detail_list"] = lodging_tuples
-        #session_attr["lodging_name"] = lodging_name
 
-        logger.info("List to put into session data " + str(lodging_tuples))
+        logger.info("List in session data " + str(session_attr["lodgings_detail_list"]))
         final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
         just tell me which number you are interested in."
         handler_input.response_builder.speak(final_speech).ask(final_speech)
