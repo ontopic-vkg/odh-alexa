@@ -10,7 +10,7 @@ THANK_RESPONSE = ["No worries.", "I'm here to help", "Glad I could help."]
 GENERIC_REPROMPT = ["What can I help you with?", "I didn't get that, can you repeat?", "Hmmm. I don't understand you."]
 
 # SPARQL QUERIES
-Q_NR_LODGING_IN_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Q_NR_LODGINGS_IN_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
