@@ -112,7 +112,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
                     lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
-        session_attr["lodgings_detail_list"] = lodging_type
+        session_attr["lodgings_detail_list"] = lodging_tuples
         #session_attr["lodging_name"] = lodging_name
 
         logger.info("List to put into session data " + str(lodging_tuples))
@@ -138,6 +138,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         
         user_lodging_nr = slots["lodging_nr"].value
+        lodgings_detail_list = session_attr["lodgings_detail_list"]
         
         logger.info("user asked for more info on lodging number" + user_lodging_nr)
         
