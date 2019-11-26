@@ -223,7 +223,9 @@ class WineSearchIntentHandler(AbstractRequestHandler):
                 wine_award_name = str(result["name"]["value"])
                 final_speech += "I would suggest a bottle of <lang xml:lang='de-DE'>" + str(result["name"]["value"]) + \
                 "</lang>. It tastes great and it also won an award in " + str(result["vintage"]["value"]) + " ."
-
+        
+        wine_and_award = (wine_name, wine_award_name)
+        session_attr["wine_and_award"] = wine_and_award
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
