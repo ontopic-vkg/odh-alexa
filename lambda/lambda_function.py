@@ -127,12 +127,11 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("AMAZON.YesIntent")(handler_input) and
-                "lodging_name" in session_attr)
+        return (is_intent_name("AMAZON.YesIntent")(handler_input) and "lodgings_detail_list" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("In YesMoreLodgingInfoIntentHandler")
+        logger.info("Starting to get more info for lodging")
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
