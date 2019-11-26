@@ -230,6 +230,60 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+class GetWineAwardNameIntentHandler(AbstractRequestHandler):
+    """Handler for yes to get more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("GetWineAwardNameIntent")(handler_input) and "wine_and_award" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("Starting to get the name of the award")
+        
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+
+        wine_and_award = session_attr["wine_and_award"]
+        
+        logger.info("user asked for more the award of the wine called " + wine_and_award[0])
+
+        # Format the final answer speech for the user
+        final_speech = ""
+        phone_nr = ""
+
+        if (len(lodgings_detail_list) < int(user_lodging_nr)):
+            final_speech += "I don't have any info on that because I didn't mention that number. \
+            Please try with one of the numbers I mentioned before"
+            handler_input.response_builder.speak(final_speech)
+            return handler_input.response_builder.response
+        else:
+            lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
+            logger.info("Inside request data")
+            
+            final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
+            + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
+
+        card_info = "{}, {}.\nPhone number: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
+
+        if (dev_supports_display(handler_input)):
+            primary_text = get_rich_text_content(card_info)
+            final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
+            Have a good time and see you later."
+
+            handler_input.response_builder.add_directive(
+                RenderTemplateDirective(
+                    BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text)
+                )).set_should_end_session(True)
+        else:
+            final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
+            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
+
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
+
+
+
 class AboutIntentHandler(AbstractRequestHandler):
     
     def can_handle(self, handler_input):
