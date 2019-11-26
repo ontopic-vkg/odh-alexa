@@ -204,6 +204,9 @@ class WineSearchIntentHandler(AbstractRequestHandler):
         # lambda log
         logger.info("In WineSearchIntentHandler")
         
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+        
         query_string = str(data.Q_WINE)
         results = query_vkg(query_string)
             
