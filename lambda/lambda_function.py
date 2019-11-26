@@ -84,9 +84,9 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         
         # add parameters to the query and run it on the VKG
         total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
-        hotel_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
+        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
         total_lodgings_results = query_vkg(total_lodgings_query_string)
-        hotel_results = query_vkg(hotel_query_string)
+        lodging_results = query_vkg(lodging_query_string)
         
         final_speech = ""
         lodging_name = ""
