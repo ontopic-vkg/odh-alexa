@@ -96,6 +96,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
 
         
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        lodging_tuples = []
         
         for nr_lodgings in total_lodgings_results["results"]["bindings"]:
             if (nr_lodgings["nrLodgings"]["value"] == 0):
@@ -106,10 +107,11 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are 3 suggestions: "
                 for count, result in enumerate(lodging_results["results"]["bindings"]):
                     lodging_name = str(result["posLabel"]["value"])
+                    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + \
-                                    str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
-                                    + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
-
+                                    str(result["posLabel"]["value"]) + "</lang>. "
+                    lodging_tuples.append = (lodging_name, lodging_address)
+            
             session_attr["lodging_name"] = lodging_name
             session_attr["lodging_type"] = lodging_type
         
