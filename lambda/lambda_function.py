@@ -150,11 +150,11 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            lodging_details = lodgings_detail_list[int(user_lodging_nr)]
+            lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
             logger.info("Inside request data")
             
             final_speech += "The address of <lang xml:lang='de-DE'>" + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
-            + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3]
+            + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
 
         card_info = "{}, {} \nphone: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
 
