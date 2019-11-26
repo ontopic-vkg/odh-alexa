@@ -107,7 +107,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             final_speech += "Here are 3 suggestions: "
             for count, result in enumerate(lodging_results["results"]["bindings"]):
                 lodging_name = str(result["posLabel"]["value"])
-                final_speech += "Number " + count +  "is called <lang xml:lang='de-DE'>" + \
+                final_speech += "Number " + str(count) +  "is called <lang xml:lang='de-DE'>" + \
                                 str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
                                 + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
 
