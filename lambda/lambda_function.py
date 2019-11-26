@@ -135,12 +135,13 @@ class YesMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
-        lodging_name = session_attr["lodging_name"]
-        lodging_type = session_attr["lodging_type"]
+        slots = handler_input.request_envelope.request.intent.slots
         
-        logger.info("user asked for more info on the lodging " + lodging_type + " " + lodging_name)
+        user_lodging_nr = slots["lodging_nr"].value
         
-        query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
+        logger.info("user asked for more info on lodging number" + user_lodging_nr)
+        
+        #query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
         results = query_vkg(query_string)
 
         # Format the final answer speech for the user
