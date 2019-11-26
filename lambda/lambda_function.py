@@ -155,10 +155,8 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             lodging_details = lodgings_detail_list[int(lodging_nr)]
             logger.info("Inside request data")
             
-            final_speech += "The address of" + lodging_details[1] + " + str(lodging_name) + " is "
-            for result in results["results"]["bindings"]:
-                phone_nr += str(result["phone"]["value"])
-                final_speech += str(result["phone"]["value"]) + ". "
+            final_speech += "The address of " + lodging_details[1] + " is " + lodging_details[2] ". Their phone number is " + \
+            lodging_details[3]
         
 
         
