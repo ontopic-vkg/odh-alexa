@@ -95,21 +95,19 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
 
         
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-
-        if (len(total_lodgings_results["results"]["bindings"]) == 0):
-            final_speech += " I found no results for what you asked, sorry. "
-            handler_input.response_builder.speak(final_speech)
-            return handler_input.response_builder.response
-        else:
-            for nr_lodgings in total_lodgings_results["results"]["bindings"]:
-                final_speech += " I found" + nr_lodgings["nrLodgings"]["value"] + " in total. "
-
-            final_speech += "Here are 3 suggestions: "
-            for count, result in enumerate(lodging_results["results"]["bindings"]):
-                lodging_name = str(result["posLabel"]["value"])
-                final_speech += "Number " + str(count) +  " is called <lang xml:lang='de-DE'>" + \
-                                str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
-                                + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
+        
+        for nr_lodgings in total_lodgings_results["results"]["bindings"]:
+            if (nr_lodgings["nrLodgings"]["value"] == 0):
+                final_speech += " I found no results for what you asked, sorry. "
+                handler_input.response_builder.speak(final_speech)
+                return handler_input.response_builder.response
+            else:
+                final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are 3 suggestions: "
+                for count, result in enumerate(lodging_results["results"]["bindings"]):
+                    lodging_name = str(result["posLabel"]["value"])
+                    final_speech += "Number " + str(count) +  " is called <lang xml:lang='de-DE'>" + \
+                                    str(result["posLabel"]["value"]) + "</lang> and it's located in <lang xml:lang='it-IT'>" \
+                                    + str(result["addr"]["value"]) + " " + str(result["loc"]["value"]) + "</lang>. "
 
             session_attr["lodging_name"] = lodging_name
             session_attr["lodging_type"] = lodging_type
