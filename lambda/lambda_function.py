@@ -141,16 +141,14 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         lodgings_detail_list = session_attr["lodgings_detail_list"]
         
         logger.info("user asked for more info on lodging number" + user_lodging_nr)
-        
-        #query_string = data.Q_LODGING_INFO.format(lodging_type, lodging_name)
-        #results = query_vkg(query_string)
 
         # Format the final answer speech for the user
         final_speech = ""
         phone_nr = ""
 
-        if (len(results["results"]["bindings"]) == 0):
-            final_speech += " I couldn't find any more information, sorry. "
+        if (len(lodgings_detail_list) < user_lodging_nr):
+            final_speech += "I don't have any info on that because I didn't mention that number. \
+            Please try with one of the numbers I mentioned before"
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
