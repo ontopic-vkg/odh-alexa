@@ -150,7 +150,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            lodging_details = lodgings_detail_list[int(lodging_nr)]
+            lodging_details = lodgings_detail_list[int(user_lodging_nr)]
             logger.info("Inside request data")
             
             final_speech += "The address of <lang xml:lang='de-DE'>" + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
