@@ -157,27 +157,21 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             
             final_speech += "The address of " + lodging_details[1] + " is " + lodging_details[2] ". Their phone number is " + \
             lodging_details[3]
-        
 
-        
-        
-        #card_info = "{}, {} \nphone: {}\n".format(lodging_type, lodging_type, phone_nr)
-        
-        
-        #logger.info("Actually created directive")
-        #logger.info(str(handler_input.response_builder))
+        card_info = "{}, {} \nphone: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
 
-        #if (dev_supports_display(handler_input)):
-        #    primary_text = get_rich_text_content(card_info)
-        #    final_speech += "Looks like you have a display, you can also check the phone number there. Have a good time and see you later."
+        if (dev_supports_display(handler_input)):
+            primary_text = get_rich_text_content(card_info)
+            final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
+            Have a good time and see you later."
 
-        #    handler_input.response_builder.add_directive(
-        #        RenderTemplateDirective(
-        #            BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text)
-        #        )).set_should_end_session(True)
-        #else:
-        #    final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
-        #    handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
+            handler_input.response_builder.add_directive(
+                RenderTemplateDirective(
+                    BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text)
+                )).set_should_end_session(True)
+        else:
+            final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
+            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
