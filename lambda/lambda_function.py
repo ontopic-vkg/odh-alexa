@@ -249,8 +249,8 @@ class GetWineAwardNameIntentHandler(AbstractRequestHandler):
         logger.info("user asked for more the award of the wine called " + wine_and_award[0])
 
         # Format the final answer speech for the user
-        final_speech = "The award that " + wine_and_award[0] + " won was the " + wine_and_award[1] + " award. \
-        Pretty cool huh?"
+        final_speech = "The award that <lang xml:lang='de-DE'>" + wine_and_award[0] + "</lang> won was the " + \
+        wine_and_award[1] + " award. Pretty cool huh?"
         
         session_attr["wine_and_award"] = None
         
