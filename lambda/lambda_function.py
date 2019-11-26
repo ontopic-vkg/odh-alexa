@@ -159,7 +159,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         card_info = "{}, {}.\nPhone number: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
 
         if (dev_supports_display(handler_input)):
-            primary_text = get_plain_text_content(card_info)
+            primary_text = get_rich_text_content(card_info)
             final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
             Have a good time and see you later."
 
