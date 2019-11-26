@@ -153,7 +153,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
             logger.info("Inside request data")
             
-            final_speech += "The address of <lang xml:lang='de-DE'>" + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
+            final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
             + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
 
         card_info = "{}, {} \nphone: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
