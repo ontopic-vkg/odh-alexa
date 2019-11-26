@@ -109,7 +109,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                     lodging_name = str(result["posLabel"]["value"])
                     lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
-                    lodging_tuples.append((ount+1, lodging_name, lodging_address))
+                    lodging_tuples.append((count+1, lodging_name, lodging_address))
             
             session_attr["lodging_name"] = lodging_name
             session_attr["lodging_type"] = lodging_type
