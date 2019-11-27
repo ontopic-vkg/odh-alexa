@@ -290,7 +290,6 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
         logger.info("ODH did not understand the following user query: " + log_user_query)
         logger.info(log_user_query)
 
-
         final_speech = "Thank you very much for your cooperation. Have a good time and see you later."
 
         handler_input.response_builder.speak(final_speech).set_should_end_session(True)
