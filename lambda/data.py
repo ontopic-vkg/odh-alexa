@@ -40,6 +40,6 @@ PREFIX schema: <http://schema.org/>
 SELECT ?name ?vintage ?aw WHERE {
   ?wine a :Wine ; :wineVintageYear ?vintage ; rdfs:label ?name ; :receivesWineAward ?aw.
   BIND(RAND() AS ?rand) .
-  FILTER(?rand <= 0.10) .
+  FILTER(?rand <= 0.15) .
 } LIMIT 1
 """
