@@ -198,65 +198,8 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # log intent that was called for insight
-        logger.info("User called LodgingSearchIntent")
+        logger.info("User called FoodSearchIntentHandler")
         
-        # get slots from user input
-        slots = handler_input.request_envelope.request.intent.slots
-        
-        # open the attribute manager so that we can then save things to the session attributes
-        attribute_manager = handler_input.attributes_manager
-        session_attr = attribute_manager.session_attributes
-
-        # Init the variables we'll use to parametrize our queries
-        city = ""
-        lodging_type = ""
-        
-        # Get the values from the slots and prepare the parameters to pass to the queries
-        city = str(slots["city"].value)
-        user_ltype = str(slots["lodgingType"].value).lower()
-        if(user_ltype in "hotels"):
-            lodging_type = "Hotel"
-        elif(user_ltype in "hostels"):
-            lodging_type = "Hostel"
-        elif(user_ltype in "campgrounds"):
-            lodging_type = "Campground"
-        else:
-            lodging_type = "BedAndBreakfast"
-        
-        # log the slots the user gave for insight
-        logger.info("user requested city " + city)
-        logger.info("user request lodging type " + lodging_type)
-        
-        # add parameters to the query and run it on the VKG
-        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
-        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
-        total_lodgings_results = query_vkg(total_lodgings_query_string)
-        lodging_results = query_vkg(lodging_query_string)
-
-        final_speech = ""
-        lodging_name = ""
-        
-        # Format the final answer speech for the user
-        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        lodging_tuples = []
-        
-        for nr_lodgings in total_lodgings_results["results"]["bindings"]:
-            if (nr_lodgings["nrLodgings"]["value"] == 0):
-                final_speech += " I found no results for what you asked, sorry. "
-                handler_input.response_builder.speak(final_speech)
-                return handler_input.response_builder.response
-            else:
-                final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are some suggestions: "
-                for count, result in enumerate(lodging_results["results"]["bindings"]):
-                    lodging_name = str(result["posLabel"]["value"])
-                    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-                    lodging_phone = str(result["phone"]["value"])
-                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
-                    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
-            
-        session_attr["lodgings_detail_list"] = lodging_tuples
-
-        logger.info("List in session data " + str(session_attr["lodgings_detail_list"]))
         final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
         just tell me which number you are interested in."
         handler_input.response_builder.speak(final_speech).ask(final_speech)
