@@ -190,6 +190,22 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
+        
+class FoodSearchIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("FoodSearchIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("In NoMoreLodgingInfoIntentHandler")
+        logger.info("user did not need more info on the lodging ")
+
+        final_speech = "Ok then, hope I was helpful."
+        handler_input.response_builder.speak(final_speech).set_should_end_session(
+            True)
+        return handler_input.response_builder.response
+    
 
 
 class WineSearchIntentHandler(AbstractRequestHandler):
