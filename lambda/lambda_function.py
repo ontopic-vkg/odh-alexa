@@ -292,9 +292,8 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
         logger.info("ODH did not understand the following user query:" + log_user_query)
 
         final_speech += "Thank you very much for your cooperation. Have a good time and see you later."
-        handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
 
-        handler_input.response_builder.speak(final_speech)
+        handler_input.response_builder.speak(final_speech).set_should_end_session(True)
         return handler_input.response_builder.response
 
 
@@ -310,8 +309,7 @@ class NoForQueryLogIntentHandler(AbstractRequestHandler):
         logger.info("User did not allow us to log his query.")
 
         final_speech = "Ok then, I won't use what you asked me to further improve. Thanks and bye!"
-        handler_input.response_builder.speak(final_speech).set_should_end_session(
-            True)
+        handler_input.response_builder.speak(final_speech).set_should_end_session(True)
         return handler_input.response_builder.response
 
 
