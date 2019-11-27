@@ -283,16 +283,13 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Starting to get more info for lodging")
+        logger.info()
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
-        slots = handler_input.request_envelope.request.intent.slots
-        
-        user_lodging_nr = slots["lodging_nr"].value
-        lodgings_detail_list = session_attr["lodgings_detail_list"]
-        
-        logger.info("user asked for more info on lodging number" + user_lodging_nr)
+
+        log_user_query = session_attr["log_user_query"]
+        logger.info("ODH did not understand the following user query:" + log_user_query)
 
         final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
         handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
