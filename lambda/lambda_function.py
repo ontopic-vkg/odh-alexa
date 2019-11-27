@@ -282,8 +282,7 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info()
-        
+
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
 
