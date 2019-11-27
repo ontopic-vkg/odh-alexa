@@ -473,6 +473,7 @@ def dev_supports_display(handler_input):
 # defined are included below. The order matters - they're processed top to bottom.
 sb = SkillBuilder()
 
+# First skill to process is of course the launch request
 sb.add_request_handler(LaunchRequestHandler())
 # Lodging logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
