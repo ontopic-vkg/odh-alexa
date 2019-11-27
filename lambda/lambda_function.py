@@ -298,20 +298,18 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
+class NoForQueryLogIntentHandler(AbstractRequestHandler):
     """Handler for no to get no more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("AMAZON.NoIntent")(handler_input) and
-                "lodgings_detail_list" in session_attr)
+        return (is_intent_name("AMAZON.NoIntent")(handler_input) and "log_user_query" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("In NoMoreLodgingInfoIntentHandler")
-        logger.info("user did not need more info on the lodging ")
+        logger.info("User did not allow us to log his query.")
 
-        final_speech = "Ok then, hope I was helpful."
+        final_speech = "Ok then, I won't use what you asked me to further improve. Thanks and bye!"
         handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
