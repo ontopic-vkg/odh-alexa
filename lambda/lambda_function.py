@@ -190,7 +190,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech).set_should_end_session(
             True)
         return handler_input.response_builder.response
-        
+
 class FoodSearchIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
