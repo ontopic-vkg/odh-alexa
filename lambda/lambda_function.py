@@ -263,9 +263,7 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         slots = handler_input.request_envelope.request.intent.slots
-        
-        user_lodging_nr = slots["lodging_nr"].value
-        
+        user_query = str(slots["userQuery"].value)
 
 
 class AboutIntentHandler(AbstractRequestHandler):
