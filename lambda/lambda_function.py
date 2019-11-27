@@ -270,7 +270,7 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
         session_attr["log_user_query"] = user_query
         
         final_speech = "I didn't quite get that. Can I record the question in order to improve myself and this service?"
-        handler_input.response_builder.speak(final_speech)
+        handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
 class YesForQueryLogIntentHandler(AbstractRequestHandler):
