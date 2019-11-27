@@ -92,8 +92,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         lodging_name = ""
         
         # Format the final answer speech for the user
-
-        
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         lodging_tuples = []
         
