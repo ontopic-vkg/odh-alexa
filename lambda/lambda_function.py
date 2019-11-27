@@ -264,6 +264,15 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         slots = handler_input.request_envelope.request.intent.slots
         user_query = str(slots["userQuery"].value)
+        
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+        session_attr["log_user_query"] = user_query
+        
+        final_speech += "I did not understand what you wanted. \
+        Can I record the question in order to improve myself and the servie I bring to you"
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
 
 
 class AboutIntentHandler(AbstractRequestHandler):
