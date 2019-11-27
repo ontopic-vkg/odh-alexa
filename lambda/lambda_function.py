@@ -257,6 +257,15 @@ class GetWineAwardNameIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
+class CustomFallbackIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return ask_utils.is_intent_name("CustomFallbackIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        slots = handler_input.request_envelope.request.intent.slots
+        
+        user_lodging_nr = slots["lodging_nr"].value
+        
 
 
 class AboutIntentHandler(AbstractRequestHandler):
