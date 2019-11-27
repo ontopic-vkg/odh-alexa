@@ -484,19 +484,19 @@ sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 # ----------------------------------------------------------
-# Custom Fallback: Log user questions -----------------------------------
+# Custom Fallback: Log user questions ----------------------
 sb.add_request_handler(CustomFallbackIntentHandler())
 sb.add_request_handler(YesForQueryLogIntentHandler())
 sb.add_request_handler(NoForQueryLogIntentHandler())
 # ----------------------------------------------------------
-# Classic interaction handlers -----------------------------------
+# Classic interaction handlers -----------------------------
 sb.add_request_handler(ThankIntentHandler())
 sb.add_request_handler(AboutIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(IntentReflectorHandler())  # make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
-# Exception handler -----------------------------------
+# Exception handler ----------------------------------------
 sb.add_exception_handler(CatchAllExceptionHandler())
 
 lambda_handler = sb.lambda_handler()
