@@ -474,9 +474,11 @@ def dev_supports_display(handler_input):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
+# Lodging logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
 sb.add_request_handler(GetMoreInfoForLodgingIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
+# ----------------------------------------------------------
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 sb.add_request_handler(CustomFallbackIntentHandler())
