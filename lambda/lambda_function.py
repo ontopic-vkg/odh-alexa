@@ -290,7 +290,7 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
         log_user_query = session_attr["log_user_query"]
         logger.info("ODH did not understand the following user query:" + log_user_query)
 
-        final_speech += "Thank you very much for your cooperation. Have a good time and see you later."
+        final_speech = "Thank you very much for your cooperation. Have a good time and see you later."
 
         handler_input.response_builder.speak(final_speech).set_should_end_session(True)
         return handler_input.response_builder.response
