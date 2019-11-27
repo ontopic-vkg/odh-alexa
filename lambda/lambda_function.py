@@ -273,7 +273,7 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
         Can I record the question in order to improve myself and the servie I bring to you?"
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
- 
+
 class YesForQueryLogIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
