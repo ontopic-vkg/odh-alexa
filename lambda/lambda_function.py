@@ -270,8 +270,53 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
         session_attr["log_user_query"] = user_query
         
         final_speech += "I did not understand what you wanted. \
-        Can I record the question in order to improve myself and the servie I bring to you"
+        Can I record the question in order to improve myself and the servie I bring to you?"
         handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
+ 
+class YesForQueryLogIntentHandler(AbstractRequestHandler):
+    """Handler for yes to get more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("AMAZON.YesIntent")(handler_input) and "log_user_query" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("Starting to get more info for lodging")
+        
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+        slots = handler_input.request_envelope.request.intent.slots
+        
+        user_lodging_nr = slots["lodging_nr"].value
+        lodgings_detail_list = session_attr["lodgings_detail_list"]
+        
+        logger.info("user asked for more info on lodging number" + user_lodging_nr)
+
+        final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
+        handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
+
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
+
+
+class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
+    """Handler for no to get no more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("AMAZON.NoIntent")(handler_input) and
+                "lodgings_detail_list" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("In NoMoreLodgingInfoIntentHandler")
+        logger.info("user did not need more info on the lodging ")
+
+        final_speech = "Ok then, hope I was helpful."
+        handler_input.response_builder.speak(final_speech).set_should_end_session(
+            True)
         return handler_input.response_builder.response
 
 
