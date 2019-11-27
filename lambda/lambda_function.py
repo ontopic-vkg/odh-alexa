@@ -440,7 +440,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
                 .response
         )
 
-# Auxilliary functions
+# Auxilliary functions that can be used in more than one handler
 
 # Performs the queries we want on the VKG
 def query_vkg(query_string):
