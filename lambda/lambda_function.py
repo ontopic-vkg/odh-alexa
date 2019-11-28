@@ -126,7 +126,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Starting to get more info for lodging")
+        logger.info("Improvement log: User request to get more info after initial lodging search")
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
