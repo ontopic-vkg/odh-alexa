@@ -52,7 +52,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # log intent that was called for insight
-        logger.info("User called LodgingSearchIntent")
+        logger.info("Improvement log: User called LodgingSearchIntent")
         
         # get slots from user input
         slots = handler_input.request_envelope.request.intent.slots
