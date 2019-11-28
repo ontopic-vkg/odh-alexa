@@ -35,8 +35,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-
-        logger.info("User launched the skill")
+        logger.info("Improvement log: Launched open data hub skill")
         
         speech = random.choice(data.WELCOME)
         speech += " " + data.HELP
