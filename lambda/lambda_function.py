@@ -78,8 +78,8 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             lodging_type = "BedAndBreakfast"
         
         # log the slots the user gave for insight
-        logger.info("user requested city " + city)
-        logger.info("user request lodging type " + lodging_type)
+        logger.info("Improvement log: User requested lodging in " + city)
+        logger.info("Improvement log: User requested to lodge in a " + lodging_type)
         
         # add parameters to the query and run it on the VKG
         total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
