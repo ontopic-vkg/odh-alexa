@@ -380,7 +380,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Improvement log: User called HelpIntent")
+        logger.info("Improvement log: User called CancelIntent or StopIntent")
         speak_output = "Bye bye!"
 
         return (
