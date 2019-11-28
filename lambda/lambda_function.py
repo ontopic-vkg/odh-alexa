@@ -134,7 +134,8 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         
         user_lodging_nr = slots["lodging_nr"].value
         lodgings_detail_list = session_attr["lodgings_detail_list"]
-        
+        lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
+
         logger.info("Improvement log: User asked for more info on " + lodging_details[1])
 
         # Format the final answer speech for the user
@@ -147,9 +148,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
-            logger.info("Inside request data")
-            
+
             final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
             + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
 
@@ -167,7 +166,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         else:
             final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
             handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info)).set_should_end_session(True)
-
+        
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
