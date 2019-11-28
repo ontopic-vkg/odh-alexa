@@ -345,7 +345,7 @@ class ThankIntentHandler(AbstractRequestHandler):
     
     def handle(self, handler_input):
         # lambda log
-        logger.info("In ThankIntentHandler")
+        logger.info("Improvement log: User called ThankIntent")
         
         speech = random.choice(data.THANK_RESPONSE)
 
