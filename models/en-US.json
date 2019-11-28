@@ -19,6 +19,9 @@
                     "name": "AboutIntent",
                     "slots": [],
                     "samples": [
+                        "is this odh",
+                        "is this the open data hub",
+                        "are you the open data hub",
                         "tell me more about",
                         "about the odh",
                         "about the open data hub",
@@ -35,6 +38,7 @@
                     "name": "WineSearchIntent",
                     "slots": [],
                     "samples": [
+                        "i want to drink some wine",
                         "do you know anything about wine",
                         "what wine should I buy for dinner",
                         "suggest me wine",
@@ -71,6 +75,10 @@
                         }
                     ],
                     "samples": [
+                        "a {lodgingType} in {city} would be nice",
+                        "how about a {lodgingType}",
+                        "sleeping in {city} would be nice",
+                        "i want to sleep in {city}",
                         "{lodgingType}",
                         "i want to sleep in {city} this week",
                         "i want to sleep in {city} tonight",
@@ -114,6 +122,130 @@
                 {
                     "name": "AMAZON.NoIntent",
                     "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetMoreInfoForLodgingIntent",
+                    "slots": [
+                        {
+                            "name": "lodging_nr",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "i said {lodging_nr}",
+                                "i said number {lodging_nr}",
+                                "number {lodging_nr}",
+                                "{lodging_nr}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{lodging_nr}",
+                        "hostel number {lodging_nr}",
+                        "hotel number {lodging_nr}",
+                        "lodging {lodging_nr}",
+                        "Number {lodging_nr}"
+                    ]
+                },
+                {
+                    "name": "GetWineAwardNameIntent",
+                    "slots": [],
+                    "samples": [
+                        "wow an award which one",
+                        "award",
+                        "what is the award called",
+                        "which award did it win",
+                        "which award",
+                        "what award",
+                        "what award was that"
+                    ]
+                },
+                {
+                    "name": "CustomFallbackIntent",
+                    "slots": [
+                        {
+                            "name": "userQuery",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "please {userQuery}",
+                        "{userQuery} please",
+                        "{userQuery} do",
+                        "{userQuery} random",
+                        "{userQuery} me",
+                        "if {userQuery}",
+                        "what {userQuery}",
+                        "I {userQuery}"
+                    ]
+                },
+                {
+                    "name": "FoodSearchIntent",
+                    "slots": [
+                        {
+                            "name": "city",
+                            "type": "AMAZON.EUROPE_CITY",
+                            "samples": [
+                                "in the city of {city}",
+                                "{city}",
+                                "in {city}"
+                            ]
+                        },
+                        {
+                            "name": "establishmentType",
+                            "type": "FoodEstablishmentType"
+                        }
+                    ],
+                    "samples": [
+                        "Where can I find a {establishmentType}",
+                        "Where can I eat in {city}",
+                        "I am hungry",
+                        "hungry",
+                        "I am in {city} and I want to eat",
+                        "are there any {establishmentType} in {city}",
+                        "{establishmentType} in {city}",
+                        "find me a {establishmentType} in {city}",
+                        "eat in a {establishmentType}",
+                        "eat in {city}"
+                    ]
                 }
             ],
             "types": [
@@ -197,6 +329,54 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "FoodEstablishmentType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "ice cream shop",
+                                "synonyms": [
+                                    "ice cream",
+                                    "ice"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "winery",
+                                "synonyms": [
+                                    "wineries"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fast food",
+                                "synonyms": [
+                                    "fast foods"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bar",
+                                "synonyms": [
+                                    "bars",
+                                    "pubs",
+                                    "pub"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "restaurant",
+                                "synonyms": [
+                                    "restaurants"
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -234,6 +414,53 @@
                                 {
                                     "type": "hasEntityResolutionMatch",
                                     "prompt": "Slot.Validation.1360723212528.1448803706784.415132319023"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "GetMoreInfoForLodgingIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "lodging_nr",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.532111563675.563209043997"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "FoodSearchIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "city",
+                            "type": "AMAZON.EUROPE_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.460776551126.690744767572"
+                            }
+                        },
+                        {
+                            "name": "establishmentType",
+                            "type": "FoodEstablishmentType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.460776551126.15343591869"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.460776551126.15343591869.891076619968"
                                 }
                             ]
                         }
@@ -350,7 +577,52 @@
                         "value": "In which city do you want to stay?"
                     }
                 ]
+            },
+            {
+                "id": "Elicit.Slot.532111563675.563209043997",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Can you please tell me which number you were interested in?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.460776551126.690744767572",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "which city should I look in?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which city?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.460776551126.15343591869",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Could you tell me what you are looking for, like a restaurant?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Would you like to eat in a restaurant, a bar or a fast food?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.460776551126.15343591869.891076619968",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I can only search for restaurants, bars, fast food, wineries and ice cream shops so far. Please provide one of those values"
+                    }
+                ]
             }
         ]
-    }
+    },
+    "version": "24"
 }
