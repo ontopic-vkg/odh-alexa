@@ -38,7 +38,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
 SELECT ?name ?vintage ?aw WHERE {
-  ?wine a :Wine ; :wineVintageYear ?vintage ; rdfs:label ?name ; :receivesWineAward ?aw.
+  ?wine a :Wine ; :wineVintageYear ?vintage ; schema:name ?name ; :receivesWineAward ?aw.
   BIND(RAND() AS ?rand) .
   FILTER(?rand <= 0.15) .
 } LIMIT 1
