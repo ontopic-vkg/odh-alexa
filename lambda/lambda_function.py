@@ -245,7 +245,7 @@ class GetWineAwardNameIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Starting to get the name of the award")
+        logger.info("Improvement log: User looked to get some information on the award")
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
