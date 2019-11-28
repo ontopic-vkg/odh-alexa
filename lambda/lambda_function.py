@@ -380,12 +380,13 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        logger.info("Improvement log: User called HelpIntent")
         speak_output = "Bye bye!"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .set_should_end_session
+                .set_should_end_session(True)
                 .response
         )
 
