@@ -274,6 +274,9 @@ class CustomFallbackIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         user_query = str(slots["userQuery"].value)
         
+        logger.info("Improvement log: Skill did not understand the user query. Now asking user if we can register it")
+
+        
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         session_attr["log_user_query"] = user_query
