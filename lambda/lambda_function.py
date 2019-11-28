@@ -194,7 +194,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         # log intent that was called for insight
         logger.info("Improvement log: User called FoodSearchIntent")
         
-        final_speech += "Here you can search for places where you can eat and drink"
+        final_speech += "Here you can search for places where you can eat"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
     
