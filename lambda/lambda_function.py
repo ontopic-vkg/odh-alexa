@@ -330,7 +330,7 @@ class AboutIntentHandler(AbstractRequestHandler):
     
     def handle(self, handler_input):
         # lambda log
-        logger.info("In AboutIntentHandler")
+        logger.info("Improvement log: User called AboutIntent")
         
         speech = data.ABOUT
 
