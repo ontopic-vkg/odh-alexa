@@ -10,37 +10,59 @@ THANK_RESPONSE = ["No worries.", "I'm here to help", "Glad I could help."]
 GENERIC_REPROMPT = ["What can I help you with?", "I didn't get that, can you repeat?", "Hmmm. I don't understand you."]
 
 # SPARQL QUERIES
+Q_NR_LODGINGS_IN_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+
+SELECT (COUNT(?h) as ?nrLodgings) WHERE {{
+  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
+  FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
+}}"""
+
 Q_RANDOM_LODGING_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
-SELECT ?posLabel ?addr ?loc WHERE {{ 
-  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+SELECT ?posLabel ?addr ?loc ?phone WHERE {{ 
+  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a ; schema:telephone ?phone.
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
   BIND(RAND() AS ?rand) .
-  FILTER(?rand < 0.10) .
-}} LIMIT 1"""
-
-Q_LODGING_INFO = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX schema: <http://schema.org/>
-
-SELECT ?phone WHERE {{ 
-  ?h a schema:{} ; schema:name ?posLabel ; schema:address ?a ; schema:telephone ?phone .
-  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc
-  FILTER (?posLabel = "{}"@de) .
-  FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it') .
-}} LIMIT 1"""
+  FILTER(?rand < 0.15) .
+}} LIMIT 3"""
 
 Q_WINE = """PREFIX : <http://noi.example.org/ontology/odh#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
-SELECT ?name ?vintage ?rand WHERE {
-  ?wine a :Wine ; :wineVintageYear ?vintage ; rdfs:label ?name ; :receivesWineAward ?aw.
+SELECT ?name ?vintage ?aw WHERE {
+  ?wine a :Wine ; :wineVintageYear ?vintage ; schema:name ?name ; :receivesWineAward ?aw.
   BIND(RAND() AS ?rand) .
-  FILTER(?rand <= 0.10) .
+  FILTER(?rand <= 0.15) .
 } LIMIT 1
+"""
+
+Q_NR_FOODE_IN_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+
+SELECT (COUNT(?r) as ?nrFoodE) WHERE {{
+  ?r a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
+  FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
+}}"""
+
+Q_RANDOM_FOODE_CITY = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+
+SELECT ?r ?posLabel ?addr WHERE {{
+  ?r a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
+  FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
+  BIND(RAND() AS ?rand) .
+  FILTER(?rand < 0.15) .
+}} LIMIT 3
 """
