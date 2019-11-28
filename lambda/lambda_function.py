@@ -316,7 +316,7 @@ class NoForQueryLogIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("User did not allow us to log his query.")
+        logger.info("Improvement log: User did not allow us to log his query.")
 
         final_speech = "Ok then, I won't use what you asked me to further improve. Thanks and bye!"
         handler_input.response_builder.speak(final_speech).set_should_end_session(True)
