@@ -135,7 +135,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         user_lodging_nr = slots["lodging_nr"].value
         lodgings_detail_list = session_attr["lodgings_detail_list"]
         
-        logger.info("user asked for more info on lodging number" + user_lodging_nr)
+        logger.info("Improvement log: User asked for more info on " + lodging_details[1])
 
         # Format the final answer speech for the user
         final_speech = ""
