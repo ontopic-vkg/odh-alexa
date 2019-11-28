@@ -208,7 +208,7 @@ class WineSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # lambda log
-        logger.info("In WineSearchIntentHandler")
+        logger.info("Improvement log: User called WineSearchIntent")
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
