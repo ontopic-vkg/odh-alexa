@@ -440,7 +440,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
     def handle(self, handler_input, exception):
         # type: (HandlerInput, Exception) -> Response
-        logger.info("Improvement log: Something happened which triggered an exception. More information below")
+        logger.info("Improvement log: Something happened which triggered an exception. More information below:")
         logger.error(exception, exc_info=True)
 
         speak_output = "Sorry, I had trouble doing what you asked. Please try again."
