@@ -184,7 +184,8 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         logger.info("Improvement log: User didn't want any more information after launching the lodging search")
 
         final_speech = "Ok then, hope I was helpful."
-        handler_input.response_builder.speak(final_speech).set_should_end_session(True)
+        handler_input.response_builder.speak(final_speech)
+        session_attr["lodgings_detail_list"] = None
         return handler_input.response_builder.response
 
 class FoodSearchIntentHandler(AbstractRequestHandler):
