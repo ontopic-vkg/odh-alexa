@@ -298,7 +298,7 @@ class YesForQueryLogIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
 
         log_user_query = session_attr["log_user_query"]
-        logger.info("ODH did not understand the following user query: " + log_user_query)
+        logger.info("Improvement: ODH did not understand the following user query: " + log_user_query)
         logger.info(log_user_query)
 
         final_speech = "Thank you very much for your cooperation. Have a good time and see you later."
