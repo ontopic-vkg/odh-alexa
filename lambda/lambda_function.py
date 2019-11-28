@@ -329,7 +329,6 @@ class AboutIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("AboutIntent")(handler_input)
     
     def handle(self, handler_input):
-        # lambda log
         logger.info("Improvement log: User called AboutIntent")
         
         speech = data.ABOUT
@@ -344,7 +343,6 @@ class ThankIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("ThankIntent")(handler_input)
     
     def handle(self, handler_input):
-        # lambda log
         logger.info("Improvement log: User called ThankIntent")
         
         speech = random.choice(data.THANK_RESPONSE)
