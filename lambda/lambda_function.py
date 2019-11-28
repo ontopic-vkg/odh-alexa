@@ -192,7 +192,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # log intent that was called for insight
-        logger.info("User called FoodSearchIntentHandler")
+        logger.info("Improvement log: User called FoodSearchIntent")
         
         final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
         just tell me which number you are interested in."
