@@ -359,7 +359,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Improvement log: User called ThankIntent")
+        logger.info("Improvement log: User called HelpIntent")
         speak_output = data.HELP
 
         return (
