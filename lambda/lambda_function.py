@@ -148,7 +148,6 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-
             final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
             + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
 
