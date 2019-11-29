@@ -226,10 +226,10 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         foode_results = query_vkg(foode_query_string)
 
         final_speech = ""
-        lodging_name = ""
+        foode_name = ""
         
         # Format the final answer speech for the user
-        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         #lodging_tuples = []
         
         for nr_foode in total_lodgings_results["results"]["bindings"]:
