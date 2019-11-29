@@ -108,7 +108,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 #    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
                 #    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
-        session_attr["lodgings_detail_list"] = lodging_tuples
+        #session_attr["lodgings_detail_list"] = lodging_tuples
 
         final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
         just tell me which number you are interested in."
