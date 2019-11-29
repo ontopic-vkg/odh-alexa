@@ -220,8 +220,8 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         logger.info("Improvement log: User requested to lodge in a " + foode_type)
         
         # add parameters to the query and run it on the VKG
-        total_foode_query_string = data.Q_NR_LODGINGS_IN_CITY.format(foode_type, city)
-        foode_query_string = data.Q_RANDOM_LODGING_CITY.format(foode_type, city)
+        total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
+        foode_query_string = data.Q_RANDOM_FOODE_CITY.format(foode_type, city)
         total_foode_results = query_vkg(total_foode_query_string)
         foode_results = query_vkg(foode_query_string)
 
