@@ -208,15 +208,13 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         
         # Get the values from the slots and prepare the parameters to pass to the queries
         city = str(slots["city"].value)
-        user_ltype = str(slots["lodgingType"].value).lower()
-        if(user_ltype in "hotels"):
-            lodging_type = "Hotel"
-        elif(user_ltype in "hostels"):
-            lodging_type = "Hostel"
-        elif(user_ltype in "campgrounds"):
-            lodging_type = "Campground"
+        user_ftype = str(slots["establishmentType"].value).lower()
+        if(user_ltype in "restaurants"):
+            user_ftype = "Restaurant"
+        elif(user_ltype in "bars" or user_ltype in "pubs"):
+            user_ftype = "BarOrPub"
         else:
-            lodging_type = "BedAndBreakfast"
+            user_ftype = "FastFoodRestaurant"
         
         # log the slots the user gave for insight
         logger.info("Improvement log: User requested lodging in " + city)
