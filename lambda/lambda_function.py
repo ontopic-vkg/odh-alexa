@@ -101,12 +101,12 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
                 return handler_input.response_builder.response
             else:
                 final_speech += " I found " + nr_lodgings["nrEstablishments"]["value"] + " in total. Here are some suggestions: "
-                for count, result in enumerate(lodging_results["results"]["bindings"]):
-                    lodging_name = str(result["posLabel"]["value"])
-                    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-                    lodging_phone = str(result["phone"]["value"])
-                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
-                    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
+                #for count, result in enumerate(lodging_results["results"]["bindings"]):
+                #    lodging_name = str(result["posLabel"]["value"])
+                #    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+                #    lodging_phone = str(result["phone"]["value"])
+                #    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
+                #    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
         session_attr["lodgings_detail_list"] = lodging_tuples
 
