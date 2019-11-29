@@ -188,6 +188,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         session_attr["lodgings_detail_list"] = None
         return handler_input.response_builder.response
 
+
 class FoodSearchIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -206,32 +207,30 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         
         # Get the values from the slots and prepare the parameters to pass to the queries
         city = str(slots["city"].value)
-        user_ltype = str(slots["establishmentType"].value).lower()
-        if(user_ltype in "hotels"):
-            foode_type = "Hotel"
-        elif(user_ltype in "hostels"):
-            foode_type = "Hostel"
-        elif(user_ltype in "campgrounds"):
-            foode_type = "Campground"
+        user_ftype = str(slots["establishmentType"].value).lower()
+        if(user_ftype in "restaurants"):
+            foode_type = "Restaurant"
+        elif(user_ftype in "bars" or user_ftype in "pubs"):
+            foode_type = "BarOrPub"
         else:
-            foode_type = "BedAndBreakfast"
+            foode_type = "FastFoodRestaurant"
         
         # log the slots the user gave for insight
         logger.info("Improvement log: User requested lodging in " + city)
         logger.info("Improvement log: User requested to lodge in a " + foode_type)
         
         # add parameters to the query and run it on the VKG
-        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(foode_type, city)
-        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(foode_type, city)
-        total_lodgings_results = query_vkg(total_lodgings_query_string)
-        lodging_results = query_vkg(lodging_query_string)
+        total_foode_query_string = data.Q_NR_LODGINGS_IN_CITY.format(foode_type, city)
+        foode_query_string = data.Q_RANDOM_LODGING_CITY.format(foode_type, city)
+        total_foode_results = query_vkg(total_foode_query_string)
+        foode_results = query_vkg(foode_query_string)
 
         final_speech = ""
         lodging_name = ""
         
         # Format the final answer speech for the user
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        lodging_tuples = []
+        #lodging_tuples = []
         
         for nr_lodgings in total_lodgings_results["results"]["bindings"]:
             if (nr_lodgings["nrLodgings"]["value"] == 0):
@@ -240,25 +239,20 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
                 return handler_input.response_builder.response
             else:
                 final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are some suggestions: "
-                for count, result in enumerate(lodging_results["results"]["bindings"]):
-                    lodging_name = str(result["posLabel"]["value"])
-                    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-                    lodging_phone = str(result["phone"]["value"])
-                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
-                    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
+                #for count, result in enumerate(lodging_results["results"]["bindings"]):
+                #    lodging_name = str(result["posLabel"]["value"])
+                #    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+                #    lodging_phone = str(result["phone"]["value"])
+                #    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + lodging_name + "</lang>. "
+                #    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
-        session_attr["lodgings_detail_list"] = lodging_tuples
+        #session_attr["lodgings_detail_list"] = lodging_tuples
 
-        final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
-        just tell me which number you are interested in."
+        #final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
+        #just tell me which number you are interested in."
         
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
-        
-        final_speech += "Here you can search for places where you can eat and drink"
-        handler_input.response_builder.speak(final_speech).ask(final_speech)
-        return handler_input.response_builder.response
-    
 
 
 class WineSearchIntentHandler(AbstractRequestHandler):
