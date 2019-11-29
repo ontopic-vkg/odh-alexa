@@ -69,29 +69,29 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         city = str(slots["city"].value)
         user_ltype = str(slots["lodgingType"].value).lower()
         if(user_ltype in "hotels"):
-            lodging_type = "Hotel"
+            foode_type = "Hotel"
         elif(user_ltype in "hostels"):
-            lodging_type = "Hostel"
+            foode_type = "Hostel"
         elif(user_ltype in "campgrounds"):
-            lodging_type = "Campground"
+            foode_type = "Campground"
         else:
-            lodging_type = "BedAndBreakfast"
+            foode_type = "BedAndBreakfast"
         
         # log the slots the user gave for insight
         logger.info("Improvement log: User requested lodging in " + city)
-        logger.info("Improvement log: User requested to lodge in a " + lodging_type)
+        logger.info("Improvement log: User requested to lodge in a " + foode_type)
         
         # add parameters to the query and run it on the VKG
-        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
-        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
-        total_lodgings_results = query_vkg(total_lodgings_query_string)
-        lodging_results = query_vkg(lodging_query_string)
+        total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
+        foode_query_string = data.Q_RANDOM_FOODE_CITY.format(foode_type, city)
+        total_foode_results = query_vkg(total_foode_query_string)
+        foode_results = query_vkg(foode_query_string)
 
         final_speech = ""
         lodging_name = ""
         
         # Format the final answer speech for the user
-        final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         lodging_tuples = []
         
         for nr_lodgings in total_lodgings_results["results"]["bindings"]:
