@@ -197,6 +197,40 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         # log intent that was called for insight
         logger.info("Improvement log: User called FoodSearchIntent")
         
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+
+        # Init the variables we'll use to parametrize our queries
+        city = ""
+        foode_type = ""
+        
+        # Get the values from the slots and prepare the parameters to pass to the queries
+        city = str(slots["city"].value)
+        user_ltype = str(slots["lodgingType"].value).lower()
+        if(user_ltype in "hotels"):
+            lodging_type = "Hotel"
+        elif(user_ltype in "hostels"):
+            lodging_type = "Hostel"
+        elif(user_ltype in "campgrounds"):
+            lodging_type = "Campground"
+        else:
+            lodging_type = "BedAndBreakfast"
+        
+        # log the slots the user gave for insight
+        logger.info("Improvement log: User requested lodging in " + city)
+        logger.info("Improvement log: User requested to lodge in a " + lodging_type)
+        
+        # add parameters to the query and run it on the VKG
+        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
+        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
+        total_lodgings_results = query_vkg(total_lodgings_query_string)
+        lodging_results = query_vkg(lodging_query_string)
+
+        final_speech = ""
+        lodging_name = ""
+        
         final_speech += "Here you can search for places where you can eat and drink"
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
