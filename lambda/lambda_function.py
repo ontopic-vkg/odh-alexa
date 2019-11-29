@@ -232,13 +232,13 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         #lodging_tuples = []
         
-        for nr_lodgings in total_lodgings_results["results"]["bindings"]:
-            if (nr_lodgings["nrLodgings"]["value"] == 0):
+        for nr_foode in total_lodgings_results["results"]["bindings"]:
+            if (nr_foode["nrEstablishments"]["value"] == 0):
                 final_speech += " I found no results for what you asked, sorry. "
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
             else:
-                final_speech += " I found " + nr_lodgings["nrLodgings"]["value"] + " in total. Here are some suggestions: "
+                final_speech += " I found " + nr_foode["nrLodgings"]["value"] + " in total. Here are some suggestions: "
                 #for count, result in enumerate(lodging_results["results"]["bindings"]):
                 #    lodging_name = str(result["posLabel"]["value"])
                 #    lodging_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
