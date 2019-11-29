@@ -88,7 +88,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         foode_results = query_vkg(foode_query_string)
 
         final_speech = ""
-        lodging_name = ""
+        foode_name = ""
         
         # Format the final answer speech for the user
         final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
