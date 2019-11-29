@@ -232,7 +232,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         #lodging_tuples = []
         
-        for nr_foode in total_lodgings_results["results"]["bindings"]:
+        for nr_foode in total_foode_results["results"]["bindings"]:
             if (nr_foode["nrEstablishments"]["value"] == 0):
                 final_speech += " I found no results for what you asked, sorry. "
                 handler_input.response_builder.speak(final_speech)
