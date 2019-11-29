@@ -206,23 +206,23 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         
         # Get the values from the slots and prepare the parameters to pass to the queries
         city = str(slots["city"].value)
-        user_ltype = str(slots["lodgingType"].value).lower()
+        user_ltype = str(slots["establishmentType"].value).lower()
         if(user_ltype in "hotels"):
-            lodging_type = "Hotel"
+            foode_type = "Hotel"
         elif(user_ltype in "hostels"):
-            lodging_type = "Hostel"
+            foode_type = "Hostel"
         elif(user_ltype in "campgrounds"):
-            lodging_type = "Campground"
+            foode_type = "Campground"
         else:
-            lodging_type = "BedAndBreakfast"
+            foode_type = "BedAndBreakfast"
         
         # log the slots the user gave for insight
         logger.info("Improvement log: User requested lodging in " + city)
-        logger.info("Improvement log: User requested to lodge in a " + lodging_type)
+        logger.info("Improvement log: User requested to lodge in a " + foode_type)
         
         # add parameters to the query and run it on the VKG
-        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(lodging_type, city)
-        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(lodging_type, city)
+        total_lodgings_query_string = data.Q_NR_LODGINGS_IN_CITY.format(foode_type, city)
+        lodging_query_string = data.Q_RANDOM_LODGING_CITY.format(foode_type, city)
         total_lodgings_results = query_vkg(total_lodgings_query_string)
         lodging_results = query_vkg(lodging_query_string)
 
