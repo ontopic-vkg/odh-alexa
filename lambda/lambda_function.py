@@ -543,8 +543,7 @@ sb.add_request_handler(GetMoreInfoForLodgingIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 # ----------------------------------------------------------
 # Food establishments logic handlers ------------------------
-sb.add_request_handler(WineSearchIntentHandler())
-sb.add_request_handler(GetWineAwardNameIntentHandler())
+sb.add_request_handler(FoodSearchIntentHandler())
 # ----------------------------------------------------------
 # Wine logic handlers -----------------------------------
 sb.add_request_handler(WineSearchIntentHandler())
