@@ -95,7 +95,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         lodging_tuples = []
         
         for nr_lodgings in total_lodgings_results["results"]["bindings"]:
-            if (nr_lodgings["nrLodgings"]["value"] == 0):
+            if (nr_lodgings["nrEstablishments"]["value"] == 0):
                 final_speech += " I found no results for what you asked, sorry. "
                 handler_input.response_builder.speak(final_speech)
                 return handler_input.response_builder.response
