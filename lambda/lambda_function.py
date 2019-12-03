@@ -186,9 +186,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         #logger.info("Improvement log: User got all the extra info for the lodging search")
         #session_attr["lodgings_detail_list"] = None
 
-        final_speech = "I can do all things"
         handler_input.response_builder.speak(final_speech)
-
         return handler_input.response_builder.response
 
 
