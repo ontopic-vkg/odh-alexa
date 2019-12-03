@@ -216,8 +216,8 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
             foode_type = "FastFoodRestaurant"
         
         # log the slots the user gave for insight
-        logger.info("Improvement log: User requested lodging in " + city)
-        logger.info("Improvement log: User requested to lodge in a " + foode_type)
+        logger.info("Improvement log: User requested to eat in " + city)
+        logger.info("Improvement log: User requested to eat in a " + foode_type)
         
         # add parameters to the query and run it on the VKG
         total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
