@@ -138,7 +138,7 @@ class GetMoreInfoForNumberHandler(AbstractRequestHandler):
             lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
             name = lodging_details[1]
             address = lodging_details[2]
-            phone_nr
+            phone_nr = lodging_details[3]
         
 
         logger.info("Improvement log: User asked for more info on " + lodging_details[1])
