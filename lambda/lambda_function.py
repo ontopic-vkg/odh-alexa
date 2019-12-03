@@ -573,18 +573,12 @@ sb = SkillBuilder()
 
 # First skill to process is of course the launch request
 sb.add_request_handler(LaunchRequestHandler())
-# Lodging logic handlers -----------------------------------
+# ODH logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
-sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
-# ----------------------------------------------------------
-# Food establishments logic handlers ------------------------
 sb.add_request_handler(FoodSearchIntentHandler())
-sb.add_request_handler(NoMoreFoodInfoIntentHandler())
-# ----------------------------------------------------------
-# The handler for "more information on number x"
 sb.add_request_handler(GetMoreInfoForNumberIntentHandler())
-# ----------------------------------------------------------
-# Wine logic handlers -----------------------------------
+sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
+sb.add_request_handler(NoMoreFoodInfoIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 # ----------------------------------------------------------
