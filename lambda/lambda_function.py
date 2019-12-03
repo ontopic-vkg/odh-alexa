@@ -115,7 +115,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         final_speech += "I can also provide you with the address and phone number of one the " + user_ltype + " I mentioned before, \
         just tell me which number you are interested in."
         
-        handler_input.response_builder.speak(final_speech).ask(final_speech)
+        handler_input.response_builder.speak(final_speech)
         logger.info("about to return")
         logger.info(session_attr["lodgings_detail_list"])
         return handler_input.response_builder.response
@@ -126,7 +126,7 @@ class GetMoreInfoForNumberIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("GetMoreInfoForNumberIntent")(handler_input) and "lodgings_detail_list" in session_attr)
+        return (is_intent_name("GetMoreInfoForNumberIntent")(handler_input))
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
