@@ -577,7 +577,7 @@ sb.add_request_handler(FoodSearchIntentHandler())
 sb.add_request_handler(NoMoreFoodInfoIntentHandler())
 # ----------------------------------------------------------
 # The handler for "more information on number x"
-sb.add_request_handler(GetMoreInfoForNumberHandler())
+sb.add_request_handler(GetMoreInfoForNumberIntentHandler())
 # ----------------------------------------------------------
 # Wine logic handlers -----------------------------------
 sb.add_request_handler(WineSearchIntentHandler())
