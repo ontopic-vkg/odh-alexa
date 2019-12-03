@@ -117,24 +117,29 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
+class GetMoreInfoForNumberHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("GetMoreInfoForNumber")(handler_input) and "lodgings_detail_list" in session_attr)
+        return (is_intent_name("GetMoreInfoForNumber")(handler_input) and )
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Improvement log: User request to get more info after initial lodging search")
+        logger.info("Improvement log: User request to get more info after initial search")
         
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        user_lodging_nr = slots["info_number"].value
-        lodgings_detail_list = session_attr["lodgings_detail_list"]
-        lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
+        if ("lodgings_detail_list" in session_attr):
+            user_lodging_nr = slots["info_number"].value
+            lodgings_detail_list = session_attr["lodgings_detail_list"]
+            lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
+            name = lodging_details[1]
+            address = lodging_details[2]
+            phone_nr
+        
 
         logger.info("Improvement log: User asked for more info on " + lodging_details[1])
 
