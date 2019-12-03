@@ -269,7 +269,7 @@ class GetMoreInfoForFoodIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        user_foode_nr = slots["lodging_nr"].value
+        user_foode_nr = slots[" GetMoreInfoForNumber"].value
         foode_detail_list = session_attr["lodgings_detail_list"]
         foode_details = foode_detail_list[int(user_foode_nr)-1]
 
