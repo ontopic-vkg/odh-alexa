@@ -125,8 +125,8 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("MoreInfoForNumberIntent")(handler_input))
+        #session_attr = handler_input.attributes_manager.session_attributes
+        return ask_utils.is_intent_name("MoreInfoForNumberIntent")(handler_input)
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
