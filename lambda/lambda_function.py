@@ -255,7 +255,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
         
         
-class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
+class GetMoreInfoForFoodIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -306,11 +306,11 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         logger.info("Improvement log: User got all the extra info for the lodging search")
         
         handler_input.response_builder.speak(final_speech)
-        session_attr["lodgings_detail_list"] = None
+        session_attr["foode_detail_list"] = None
         return handler_input.response_builder.response
 
 
-class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
+class NoMoreFoodInfoIntentHandler(AbstractRequestHandler):
     """Handler for no to get no more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -323,7 +323,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
 
         final_speech = "Ok then, hope I was helpful."
         handler_input.response_builder.speak(final_speech)
-        session_attr["lodgings_detail_list"] = None
+        session_attr["foode_detail_list"] = None
         return handler_input.response_builder.response
 
 
