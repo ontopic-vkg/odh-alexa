@@ -230,7 +230,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         
         # Format the final answer speech for the user
         final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        #lodging_tuples = []
+        lodging_tuples = []
         
         for nr_foode in total_foode_results["results"]["bindings"]:
             if (nr_foode["nrEstablishments"]["value"] == 0):
@@ -243,13 +243,13 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
                     foode_name = str(result["posLabel"]["value"])
                     foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
                     foode_phone = str(result["phone"]["value"])
-                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_address + "</lang>. "
-                    lodging_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
+                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + "</lang>. "
+                    foode_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
             
-        #session_attr["lodgings_detail_list"] = lodging_tuples
+        session_attr["foode_detail_list"] = lodging_tuples
 
-        #final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
-        #just tell me which number you are interested in."
+        final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
+        just tell me which number you are interested in."
         
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
