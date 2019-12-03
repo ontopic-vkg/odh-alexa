@@ -255,7 +255,6 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 class GetMoreInfoForFoodIntentHandler(AbstractRequestHandler):
-    """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
