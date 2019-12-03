@@ -576,7 +576,7 @@ sb.add_request_handler(LaunchRequestHandler())
 # ODH logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
 sb.add_request_handler(FoodSearchIntentHandler())
-sb.add_request_handler(GetMoreInfoForNumberIntentHandler())
+sb.add_request_handler(MoreInfoForNumberIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(NoMoreFoodInfoIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
