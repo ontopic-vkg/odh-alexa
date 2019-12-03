@@ -230,7 +230,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         
         # Format the final answer speech for the user
         final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
-        lodging_tuples = []
+        foode_tuples = []
         
         for nr_foode in total_foode_results["results"]["bindings"]:
             if (nr_foode["nrEstablishments"]["value"] == 0):
