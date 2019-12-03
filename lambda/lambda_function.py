@@ -121,20 +121,20 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class GetMoreInfoForNumberIntentHandler(AbstractRequestHandler):
+class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("GetMoreInfoForNumberIntent")(handler_input))
+        return (is_intent_name("MoreInfoForNumberIntent")(handler_input))
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Improvement log: User request to get more info after initial search")
+        #logger.info("Improvement log: User request to get more info after initial search")
         
-        attribute_manager = handler_input.attributes_manager
-        session_attr = attribute_manager.session_attributes
-        slots = handler_input.request_envelope.request.intent.slots
+        #attribute_manager = handler_input.attributes_manager
+        #session_attr = attribute_manager.session_attributes
+        #slots = handler_input.request_envelope.request.intent.slots
         
         #if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
         #    handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
@@ -184,7 +184,7 @@ class GetMoreInfoForNumberIntentHandler(AbstractRequestHandler):
         #    handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
         #
         #logger.info("Improvement log: User got all the extra info for the lodging search")
-        final_speech = "what what... what"
+        final_speech = "I can do all things"
         handler_input.response_builder.speak(final_speech)
         #session_attr["lodgings_detail_list"] = None
 
