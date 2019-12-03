@@ -246,7 +246,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + "</lang>. "
                     foode_tuples.append((count+1, foode_name, foode_address, foode_phone))
             
-        session_attr["foode_detail_list"] = lodging_tuples
+        session_attr["foode_detail_list"] = foode_tuples
 
         final_speech += "I can also provide you with the address and phone number of one the " + user_ftype + " I mentioned before, \
         just tell me which number you are interested in."
