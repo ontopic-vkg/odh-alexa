@@ -123,6 +123,7 @@ class GetMoreInfoForNumberHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         #session_attr = handler_input.attributes_manager.session_attributes
         #return (is_intent_name("GetMoreInfoForNumber")(handler_input) and lodgings_detail_list in )
+        logger.info("inside get more info can handle function")
         return ask_utils.is_intent_name("GetMoreInfoForNumber")(handler_input)
 
     def handle(self, handler_input):
