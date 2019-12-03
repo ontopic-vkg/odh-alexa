@@ -132,42 +132,42 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("Improvement log: User request to get more info after initial search")
         
-        #attribute_manager = handler_input.attributes_manager
-        #session_attr = attribute_manager.session_attributes
-        #slots = handler_input.request_envelope.request.intent.slots
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+        slots = handler_input.request_envelope.request.intent.slots
         
-        #if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
-        #    handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
-        #    return handler_input.response_builder.response
-        #elif("lodgings_detail_list" in session_attr):
-        #    user_lodging_nr = slots["info_number"].value
-        #    lodgings_detail_list = session_attr["lodgings_detail_list"]
-        #    lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
-        #    name = lodging_details[1]
-        #    address = lodging_details[2]
-        #    phone_nr = lodging_details[3]
-        #elif("foode_detail_list" in session_attr):
-        #    user_foode_nr = slots["info_number"].value
-        #    foode_detail_list = session_attr["lodgings_detail_list"]
-        #    foode_details = foode_detail_list[int(user_foode_nr)-1]
-        #    name = foode_details[1]
-        #    address = foode_details[2]
-        #    phone_nr = foode_details[3]
-        #
-        #logger.info("Improvement log: User asked for more info on " + name)
-#
-        ## Format the final answer speech for the user
-        #final_speech = ""
-        #phone_nr = ""
-#
-        #if (len(lodgings_detail_list) < int(user_lodging_nr)):
-        #    final_speech += "I don't have any info on that because I didn't mention that number. \
-        #    Please try with one of the numbers I mentioned before"
-        #    handler_input.response_builder.speak(final_speech)
-        #    return handler_input.response_builder.response
-        #else:
-        #    final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
-        #    + address + "</lang>. Their phone number is " + phone_nr + " . "
+        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
+            handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
+            return handler_input.response_builder.response
+        elif("lodgings_detail_list" in session_attr):
+            user_lodging_nr = slots["info_number"].value
+            detail_list = session_attr["lodgings_detail_list"]
+            details = lodgings_detail_list[int(user_lodging_nr)-1]
+            name = lodging_details[1]
+            address = lodging_details[2]
+            phone_nr = lodging_details[3]
+        elif("foode_detail_list" in session_attr):
+            user_foode_nr = slots["info_number"].value
+            detail_list = session_attr["lodgings_detail_list"]
+            details = foode_detail_list[int(user_foode_nr)-1]
+            name = foode_details[1]
+            address = foode_details[2]
+            phone_nr = foode_details[3]
+        
+        logger.info("Improvement log: User asked for more info on " + name)
+
+        final_speech = ""
+        phone_nr = ""
+        user_nr = slots["info_number"].value
+
+        if (len(detail_list) < int(user_nr)):
+            final_speech += "I don't have any info on that because I didn't mention that number. \
+            Please try with one of the numbers I mentioned before"
+            handler_input.response_builder.speak(final_speech)
+            return handler_input.response_builder.response
+        else:
+            final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
+            + address + "</lang>. Their phone number is " + phone_nr + " . "
 #
         #card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
 #
