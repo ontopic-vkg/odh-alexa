@@ -94,8 +94,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         final_speech += "Ok, so I looked for " + user_ltype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
         lodging_tuples = []
         
-        logger.info("Running query")
-        
         for nr_lodgings in total_lodgings_results["results"]["bindings"]:
             if (nr_lodgings["nrLodgings"]["value"] == 0):
                 final_speech += " I found no results for what you asked, sorry. "
@@ -116,8 +114,6 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         just tell me which number you are interested in."
         
         handler_input.response_builder.speak(final_speech).ask(final_speech)
-        logger.info("about to return")
-        logger.info(session_attr["lodgings_detail_list"])
         return handler_input.response_builder.response
 
 
