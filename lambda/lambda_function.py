@@ -117,7 +117,7 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class GetMoreInfoForNumberHandler(AbstractRequestHandler):
+class GetMoreInfoForNumberIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
