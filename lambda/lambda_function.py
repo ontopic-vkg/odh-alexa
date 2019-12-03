@@ -139,12 +139,10 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             user_lodging_nr = slots["info_number"].value
             detail_list = session_attr["lodgings_detail_list"]
             session_attr["lodgings_detail_list"] = None
-
         elif("foode_detail_list" in session_attr):
             user_foode_nr = slots["info_number"].value
             detail_list = session_attr["foode_detail_list"]
             session_attr["foode_detail_list"] = None
-
         
         user_nr = slots["info_number"].value
         details = detail_list[int(user_nr)-1]
