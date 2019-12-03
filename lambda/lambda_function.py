@@ -132,7 +132,7 @@ class GetMoreInfoForNumberHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"]):
+        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
         
         elif("lodgings_detail_list" in session_attr):
             user_lodging_nr = slots["info_number"].value
