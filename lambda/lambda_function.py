@@ -132,16 +132,24 @@ class GetMoreInfoForNumberHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        if ("lodgings_detail_list" in session_attr):
+        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"]):
+        
+        elif("lodgings_detail_list" in session_attr):
             user_lodging_nr = slots["info_number"].value
             lodgings_detail_list = session_attr["lodgings_detail_list"]
             lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
             name = lodging_details[1]
             address = lodging_details[2]
             phone_nr = lodging_details[3]
+        elif("foode_detail_list" in session_attr):
+            user_foode_nr = slots["info_number"].value
+            foode_detail_list = session_attr["lodgings_detail_list"]
+            foode_details = foode_detail_list[int(user_foode_nr)-1]
+            name = foode_details[1]
+            address = foode_details[2]
+            phone_nr = foode_details[3]
         
-
-        logger.info("Improvement log: User asked for more info on " + lodging_details[1])
+        logger.info("Improvement log: User asked for more info on " + name)
 
         # Format the final answer speech for the user
         final_speech = ""
