@@ -138,9 +138,13 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         elif("lodgings_detail_list" in session_attr):
             user_lodging_nr = slots["info_number"].value
             detail_list = session_attr["lodgings_detail_list"]
+            session_attr["lodgings_detail_list"] = None
+
         elif("foode_detail_list" in session_attr):
             user_foode_nr = slots["info_number"].value
             detail_list = session_attr["foode_detail_list"]
+            session_attr["foode_detail_list"] = None
+
         
         user_nr = slots["info_number"].value
         details = detail_list[int(user_nr)-1]
@@ -161,23 +165,22 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         else:
             final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
             + address + "</lang>. Their phone number is " + phone_nr + " . "
-#
-        #card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
-#
-        #if (dev_supports_display(handler_input)):
-        #    primary_text = get_rich_text_content(card_info)
-        #    final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
-        #    Have a good time and see you later."
-#
-        #    handler_input.response_builder.add_directive(
-        #        RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
-        #        )
-        #else:
-        #    final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
-        #    handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
-        #
-        #logger.info("Improvement log: User got all the extra info for the lodging search")
-        #session_attr["lodgings_detail_list"] = None
+
+        card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
+
+        if (dev_supports_display(handler_input)):
+            primary_text = get_rich_text_content(card_info)
+            final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
+            Have a good time and see you later."
+
+            handler_input.response_builder.add_directive(
+                RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
+                )
+        else:
+            final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
+            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
+        
+        logger.info("Improvement log: User got all the extra info for the lodging search")
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
