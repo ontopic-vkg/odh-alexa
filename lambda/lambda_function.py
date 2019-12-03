@@ -143,7 +143,6 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             user_foode_nr = slots["info_number"].value
             detail_list = session_attr["lodgings_detail_list"]
             
-        
         user_nr = slots["info_number"].value
         details = detail_list[int(user_nr)-1]
         name = lodging_details[1]
