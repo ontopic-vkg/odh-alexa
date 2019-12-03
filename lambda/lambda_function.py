@@ -162,10 +162,10 @@ class GetMoreInfoForNumberHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
-            + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
+            final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
+            + address + "</lang>. Their phone number is " + phone_nr + " . "
 
-        card_info = "{}, {}.\nPhone number: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
+        card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
 
         if (dev_supports_display(handler_input)):
             primary_text = get_rich_text_content(card_info)
