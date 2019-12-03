@@ -244,7 +244,7 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
                     foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
                     foode_phone = str(result["phone"]["value"])
                     final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + "</lang>. "
-                    foode_tuples.append((count+1, lodging_name, lodging_address, lodging_phone))
+                    foode_tuples.append((count+1, foode_name, foode_address, foode_phone))
             
         session_attr["foode_detail_list"] = lodging_tuples
 
