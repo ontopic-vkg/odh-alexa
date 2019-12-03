@@ -70,7 +70,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <http://schema.org/>
 
 SELECT ?posLabel ?addr ?loc ?phone WHERE {{
-  ?r a schema:{} ; schema:name ?posLabel ; schema:address ?a .
+  ?r a schema:{} ; schema:name ?posLabel ; schema:address ?a; schema:telephone ?phone .
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
   FILTER (lang(?posLabel) = 'de' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
   BIND(RAND() AS ?rand) .
