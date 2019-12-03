@@ -269,11 +269,11 @@ class GetMoreInfoForFoodIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        user_lodging_nr = slots["lodging_nr"].value
-        lodgings_detail_list = session_attr["lodgings_detail_list"]
-        lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
+        user_foode_nr = slots["lodging_nr"].value
+        foode_detail_list = session_attr["lodgings_detail_list"]
+        foode_details = foode_detail_list[int(user_foode_nr)-1]
 
-        logger.info("Improvement log: User asked for more info on " + lodging_details[1])
+        logger.info("Improvement log: User asked for more info on " + foode_details[1])
 
         # Format the final answer speech for the user
         final_speech = ""
