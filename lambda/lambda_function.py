@@ -259,7 +259,7 @@ class GetMoreInfoForFoodIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("GetMoreInfoForFoodIntent")(handler_input) and "foode_detail_list" in session_attr)
+        return (is_intent_name("GetMoreInfoForNumber")(handler_input) and "foode_detail_list" in session_attr)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
