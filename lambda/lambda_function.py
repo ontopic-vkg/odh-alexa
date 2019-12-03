@@ -132,7 +132,7 @@ class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        user_lodging_nr = slots["lodging_nr"].value
+        user_lodging_nr = slots["info_number"].value
         lodgings_detail_list = session_attr["lodgings_detail_list"]
         lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
 
