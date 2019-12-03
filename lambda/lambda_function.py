@@ -138,23 +138,23 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         elif("lodgings_detail_list" in session_attr):
             user_lodging_nr = slots["info_number"].value
             detail_list = session_attr["lodgings_detail_list"]
-            details = detail_list[int(user_lodging_nr)-1]
-            name = lodging_details[1]
-            address = lodging_details[2]
-            phone_nr = lodging_details[3]
+            
         elif("foode_detail_list" in session_attr):
             user_foode_nr = slots["info_number"].value
             detail_list = session_attr["lodgings_detail_list"]
-            details = details[int(user_foode_nr)-1]
-            name = foode_details[1]
-            address = foode_details[2]
-            phone_nr = foode_details[3]
+            
+        
+        user_nr = slots["info_number"].value
+        details = detail_list[int(user_nr)-1]
+        name = lodging_details[1]
+        address = lodging_details[2]
+        phone_nr = lodging_details[3]
+        
         
         logger.info("Improvement log: User asked for more info on " + name)
-
         final_speech = ""
         phone_nr = ""
-        user_nr = slots["info_number"].value
+            
 
         if (len(detail_list) < int(user_nr)):
             final_speech += "I don't have any info on that because I didn't mention that number. \
