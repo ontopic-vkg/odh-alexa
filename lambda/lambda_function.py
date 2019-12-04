@@ -149,9 +149,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         name = details[1]
         address = details[2]
         phone_nr = details[3]
-        
-        logger.info(phone_nr)
-        logger.info("Improvement log: User asked for more info on " + name)
+                logger.info("Improvement log: User asked for more info on " + name)
         final_speech = ""
 
         if (len(detail_list) < int(user_nr)):
