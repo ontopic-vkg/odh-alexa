@@ -132,7 +132,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
+        if("lodgings_detail_list" not in session_attr and "foode_detail_list" not in session_attr):
             handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
             return handler_input.response_builder.response
         elif("lodgings_detail_list" in session_attr):
