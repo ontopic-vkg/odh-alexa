@@ -127,8 +127,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("Improvement log: User request to get more info after initial search")
-        final_speech = "I can do all things"
-        
+
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
