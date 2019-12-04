@@ -127,57 +127,58 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("Improvement log: User request to get more info after initial search")
+        final_speech = "I can do all things"
         
-        attribute_manager = handler_input.attributes_manager
-        session_attr = attribute_manager.session_attributes
-        slots = handler_input.request_envelope.request.intent.slots
-        
-        if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
-            handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
-            return handler_input.response_builder.response
-        elif("lodgings_detail_list" in session_attr):
-            user_lodging_nr = slots["info_number"].value
-            detail_list = session_attr["lodgings_detail_list"]
-            session_attr["lodgings_detail_list"] = None
-        elif("foode_detail_list" in session_attr):
-            user_foode_nr = slots["info_number"].value
-            detail_list = session_attr["foode_detail_list"]
-            session_attr["foode_detail_list"] = None
-        
-        user_nr = slots["info_number"].value
-        details = detail_list[int(user_nr)-1]
-        name = details[1]
-        address = details[2]
-        phone_nr = details[3]
-        
-        logger.info("Improvement log: User asked for more info on " + name)
-        final_speech = ""
-        phone_nr = ""
-
-        if (len(detail_list) < int(user_nr)):
-            final_speech += "I don't have any info on that because I didn't mention that number. \
-            Please try with one of the numbers I mentioned before"
-            handler_input.response_builder.speak(final_speech)
-            return handler_input.response_builder.response
-        else:
-            final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
-            + address + "</lang>. Their phone number is " + phone_nr + " . "
-
-        card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
-
-        if (dev_supports_display(handler_input)):
-            primary_text = get_rich_text_content(card_info)
-            final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
-            Have a good time and see you later."
-
-            handler_input.response_builder.add_directive(
-                RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
-                )
-        else:
-            final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
-            handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
-        
-        logger.info("Improvement log: User got all the extra info")
+        #attribute_manager = handler_input.attributes_manager
+        #session_attr = attribute_manager.session_attributes
+        #slots = handler_input.request_envelope.request.intent.slots
+        #
+        #if(session_attr["lodgings_detail_list"] is None and session_attr["foode_detail_list"] is None):
+        #    handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
+        #    return handler_input.response_builder.response
+        #elif("lodgings_detail_list" in session_attr):
+        #    user_lodging_nr = slots["info_number"].value
+        #    detail_list = session_attr["lodgings_detail_list"]
+        #    session_attr["lodgings_detail_list"] = None
+        #elif("foode_detail_list" in session_attr):
+        #    user_foode_nr = slots["info_number"].value
+        #    detail_list = session_attr["foode_detail_list"]
+        #    session_attr["foode_detail_list"] = None
+        #
+        #user_nr = slots["info_number"].value
+        #details = detail_list[int(user_nr)-1]
+        #name = details[1]
+        #address = details[2]
+        #phone_nr = details[3]
+        #
+        #logger.info("Improvement log: User asked for more info on " + name)
+        #final_speech = ""
+        #phone_nr = ""
+#
+        #if (len(detail_list) < int(user_nr)):
+        #    final_speech += "I don't have any info on that because I didn't mention that number. \
+        #    Please try with one of the numbers I mentioned before"
+        #    handler_input.response_builder.speak(final_speech)
+        #    return handler_input.response_builder.response
+        #else:
+        #    final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
+        #    + address + "</lang>. Their phone number is " + phone_nr + " . "
+#
+        #card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
+#
+        #if (dev_supports_display(handler_input)):
+        #    primary_text = get_rich_text_content(card_info)
+        #    final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
+        #    Have a good time and see you later."
+#
+        #    handler_input.response_builder.add_directive(
+        #        RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
+        #        )
+        #else:
+        #    final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
+        #    handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
+        #
+        #logger.info("Improvement log: User got all the extra info")
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
