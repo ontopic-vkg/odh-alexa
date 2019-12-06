@@ -165,6 +165,9 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
 
         if (dev_supports_display(handler_input)):
+            img_url = "https://www.thelocal.it/userdata/images/article/b6f5066cbe57206b07715a3f1aa4904081e49c02d41fe02e94966ce00b881072.jpg"
+            background_img = Image(sources=[ImageInstance(img_url)])
+
             primary_text = get_rich_text_content(card_info)
             final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
             Have a good time and see you later."
