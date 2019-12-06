@@ -110,65 +110,81 @@ class LodgingSearchIntentHandler(AbstractRequestHandler):
             
         session_attr["lodgings_detail_list"] = lodging_tuples
 
-        final_speech += "I can also provide you with the address and phone number of one the hotels I mentioned before, \
+        final_speech += "I can also provide you with the address and phone number of one the " + user_ltype + " I mentioned before, \
         just tell me which number you are interested in."
         
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
 
 
-class GetMoreInfoForLodgingIntentHandler(AbstractRequestHandler):
+class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
     """Handler for yes to get more info intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        session_attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("GetMoreInfoForLodgingIntent")(handler_input) and "lodgings_detail_list" in session_attr)
-
+        #session_attr = handler_input.attributes_manager.session_attributes
+        return ask_utils.is_intent_name("MoreInfoForNumberIntent")(handler_input)
+        
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("Improvement log: User request to get more info after initial lodging search")
-        
+        logger.info("Improvement log: User request to get more info after initial search")
+
         attribute_manager = handler_input.attributes_manager
         session_attr = attribute_manager.session_attributes
         slots = handler_input.request_envelope.request.intent.slots
         
-        user_lodging_nr = slots["lodging_nr"].value
-        lodgings_detail_list = session_attr["lodgings_detail_list"]
-        lodging_details = lodgings_detail_list[int(user_lodging_nr)-1]
-
-        logger.info("Improvement log: User asked for more info on " + lodging_details[1])
-
-        # Format the final answer speech for the user
+        if("lodgings_detail_list" not in session_attr and "foode_detail_list" not in session_attr):
+            handler_input.response_builder.speak("I don't know how to help you with that, sorry!")
+            return handler_input.response_builder.response
+        elif("lodgings_detail_list" in session_attr):
+            user_lodging_nr = slots["info_number"].value
+            detail_list = session_attr["lodgings_detail_list"]
+            session_attr["lodgings_detail_list"] = None
+        elif("foode_detail_list" in session_attr):
+            user_foode_nr = slots["info_number"].value
+            detail_list = session_attr["foode_detail_list"]
+            session_attr["foode_detail_list"] = None
+        
+        user_nr = slots["info_number"].value
+        details = detail_list[int(user_nr)-1]
+        name = details[1]
+        address = details[2]
+        phone_nr = details[3]
+                
+        logger.info("Improvement log: User asked for more info on " + name)
         final_speech = ""
-        phone_nr = ""
 
-        if (len(lodgings_detail_list) < int(user_lodging_nr)):
+        if (len(detail_list) < int(user_nr)):
             final_speech += "I don't have any info on that because I didn't mention that number. \
             Please try with one of the numbers I mentioned before"
             handler_input.response_builder.speak(final_speech)
             return handler_input.response_builder.response
         else:
-            final_speech += "The address of <lang xml:lang='de-DE'> " + lodging_details[1] + "</lang> is <lang xml:lang='it-IT'>" \
-            + lodging_details[2] + "</lang>. Their phone number is " + lodging_details[3] + " . "
+            final_speech += "The address of <lang xml:lang='de-DE'> " + name + "</lang> is <lang xml:lang='it-IT'>" \
+            + address + "</lang>. Their phone number is " + phone_nr + " . "
 
-        card_info = "{}, {}.\nPhone number: {}\n".format(lodging_details[1], lodging_details[2], lodging_details[3])
+        card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
 
         if (dev_supports_display(handler_input)):
+            bg_img_url = "https://www.thelocal.it/userdata/images/article/b6f5066cbe57206b07715a3f1aa4904081e49c02d41fe02e94966ce00b881072.jpg"
+            img_url = "https://www.franziskanerstuben.com/wp-content/uploads/2019/05/facciata-esterna.jpg"
+            
+            background_img = Image(sources=[ImageInstance(bg_img_url)])
+            img = Image(sources=[ImageInstance(img_url)])
             primary_text = get_rich_text_content(card_info)
             final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
             Have a good time and see you later."
 
             handler_input.response_builder.add_directive(
-                RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
-                )
+                RenderTemplateDirective(BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, background_image=background_img, \
+                image=img, title=data.SKILL_NAME, text_content=primary_text))
+            )
         else:
             final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
             handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
         
-        logger.info("Improvement log: User got all the extra info for the lodging search")
-        
+        logger.info("Improvement log: User got all the extra info")
+
         handler_input.response_builder.speak(final_speech)
-        session_attr["lodgings_detail_list"] = None
         return handler_input.response_builder.response
 
 
@@ -188,6 +204,7 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         session_attr["lodgings_detail_list"] = None
         return handler_input.response_builder.response
 
+
 class FoodSearchIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -197,10 +214,78 @@ class FoodSearchIntentHandler(AbstractRequestHandler):
         # log intent that was called for insight
         logger.info("Improvement log: User called FoodSearchIntent")
         
-        final_speech += "Here you can search for places where you can eat and drink"
+        slots = handler_input.request_envelope.request.intent.slots
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+
+        city = ""
+        foode_type = ""
+        
+        # Get the values from the slots and prepare the parameters to pass to the queries
+        city = str(slots["city"].value)
+        user_ftype = str(slots["establishmentType"].value).lower()
+        if(user_ftype in "restaurants"):
+            foode_type = "Restaurant"
+        elif(user_ftype in "bars" or user_ftype in "pubs"):
+            foode_type = "BarOrPub"
+        else:
+            foode_type = "FastFoodRestaurant"
+        
+        # log the slots the user gave for insight
+        logger.info("Improvement log: User requested to eat in " + city)
+        logger.info("Improvement log: User requested to eat in a " + foode_type)
+        
+        # add parameters to the query and run it on the VKG
+        total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
+        foode_query_string = data.Q_RANDOM_FOODE_CITY.format(foode_type, city)
+        total_foode_results = query_vkg(total_foode_query_string)
+        foode_results = query_vkg(foode_query_string)
+
+        final_speech = ""
+        foode_name = ""
+        
+        # Format the final answer speech for the user
+        final_speech += "Ok, so I looked for " + user_ftype + " in <lang xml:lang='it-IT'> " + city + "</lang> and "
+        foode_tuples = []
+        
+        for nr_foode in total_foode_results["results"]["bindings"]:
+            if (nr_foode["nrEstablishments"]["value"] == 0):
+                final_speech += " I found no results for what you asked, sorry. "
+                handler_input.response_builder.speak(final_speech)
+                return handler_input.response_builder.response
+            else:
+                final_speech += " I found " + nr_foode["nrEstablishments"]["value"] + " in total. Here are some suggestions: "
+                for count, result in enumerate(foode_results["results"]["bindings"]):
+                    foode_name = str(result["posLabel"]["value"])
+                    foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+                    foode_phone = str(result["phone"]["value"])
+                    final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + "</lang>. "
+                    foode_tuples.append((count+1, foode_name, foode_address, foode_phone))
+            
+        session_attr["foode_detail_list"] = foode_tuples
+
+        final_speech += "I can also provide you with the address and phone number of one the " + user_ftype + " I mentioned before, \
+        just tell me which number you are interested in."
+        
         handler_input.response_builder.speak(final_speech).ask(final_speech)
         return handler_input.response_builder.response
-    
+
+
+class NoMoreFoodInfoIntentHandler(AbstractRequestHandler):
+    """Handler for no to get no more info intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        session_attr = handler_input.attributes_manager.session_attributes
+        return (is_intent_name("AMAZON.NoIntent")(handler_input) and "foode_detail_list" in session_attr)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("Improvement log: User didn't want any more information after launching the food eastablishment search")
+
+        final_speech = "Ok then, hope I was helpful."
+        handler_input.response_builder.speak(final_speech)
+        session_attr["foode_detail_list"] = None
+        return handler_input.response_builder.response
 
 
 class WineSearchIntentHandler(AbstractRequestHandler):
@@ -485,12 +570,12 @@ sb = SkillBuilder()
 
 # First skill to process is of course the launch request
 sb.add_request_handler(LaunchRequestHandler())
-# Lodging logic handlers -----------------------------------
+# ODH logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
-sb.add_request_handler(GetMoreInfoForLodgingIntentHandler())
+sb.add_request_handler(FoodSearchIntentHandler())
+sb.add_request_handler(MoreInfoForNumberIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
-# ----------------------------------------------------------
-# Wine logic handlers -----------------------------------
+sb.add_request_handler(NoMoreFoodInfoIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 # ----------------------------------------------------------
