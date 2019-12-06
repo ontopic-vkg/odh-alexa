@@ -176,7 +176,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
 
             handler_input.response_builder.add_directive(
                 RenderTemplateDirective(BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, backgroundImage=background_img, \
-                image="" title=data.SKILL_NAME, text_content=primary_text))
+                image=img title=data.SKILL_NAME, text_content=primary_text))
             )
         else:
             final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
