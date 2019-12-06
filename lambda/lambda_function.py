@@ -27,6 +27,8 @@ logger.setLevel(logging.INFO)
 sparql_endpoint = SPARQLWrapper("https://sparql.opendatahub.testingmachine.eu/sparql")
 bg_img_generic = "http://www.provinz.bz.it/this-is-south-tyrol/downloads/southtyrol(1).jpg"
 
+BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, image=bg_img_generic, title=title, text_content=primary_text)
+
 class LaunchRequestHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
