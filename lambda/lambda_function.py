@@ -25,8 +25,8 @@ logger.setLevel(logging.INFO)
 
 # sparlq endpoint
 sparql_endpoint = SPARQLWrapper("https://sparql.opendatahub.testingmachine.eu/sparql")
-bg_img_generic = "http://www.provinz.bz.it/this-is-south-tyrol/downloads/southtyrol(1).jpg"
-background_img = Image(bg_img_generic)
+img_url = "http://www.provinz.bz.it/this-is-south-tyrol/downloads/southtyrol(1).jpg"
+background_img = Image(sources=[ImageInstance(img_url)])
 
 class LaunchRequestHandler(AbstractRequestHandler):
 
