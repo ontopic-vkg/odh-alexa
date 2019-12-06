@@ -171,7 +171,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             Have a good time and see you later."
 
             handler_input.response_builder.add_directive(
-                RenderTemplateDirective(BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, image=bg_img_generic, \
+                RenderTemplateDirective(BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, image=background_img, \
                 title=data.SKILL_NAME, text_content=primary_text))
             )
         else:
