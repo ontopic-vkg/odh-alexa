@@ -165,13 +165,19 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         card_info = "{}, {}.\nPhone number: {}\n".format(name, address, phone_nr)
 
         if (dev_supports_display(handler_input)):
+            bg_img_url = "https://www.thelocal.it/userdata/images/article/b6f5066cbe57206b07715a3f1aa4904081e49c02d41fe02e94966ce00b881072.jpg"
+            img_url = "https://www.franziskanerstuben.com/wp-content/uploads/2019/05/facciata-esterna.jpg"
+            
+            background_img = Image(sources=[ImageInstance(bg_img_url)])
+            img = Image(sources=[ImageInstance(img_url)])
             primary_text = get_rich_text_content(card_info)
             final_speech += "Looks like you have a display, you can also check the details I just mentioned there. \
             Have a good time and see you later."
 
             handler_input.response_builder.add_directive(
-                RenderTemplateDirective(BodyTemplate1(title=data.SKILL_NAME, text_content=primary_text))
-                )
+                RenderTemplateDirective(BodyTemplate2(back_button=BackButtonBehavior.VISIBLE, background_image=background_img, \
+                image=img, title=data.SKILL_NAME, text_content=primary_text))
+            )
         else:
             final_speech += "I'm sending you this info also on the Alexa app so you can check it there. Have a good time and see you later."
             handler_input.response_builder.set_card(SimpleCard(title=data.SKILL_NAME, content=card_info))
