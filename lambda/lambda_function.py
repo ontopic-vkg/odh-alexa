@@ -26,6 +26,7 @@ logger.setLevel(logging.INFO)
 # sparlq endpoint
 sparql_endpoint = SPARQLWrapper("https://sparql.opendatahub.testingmachine.eu/sparql")
 
+
 class LaunchRequestHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
