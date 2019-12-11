@@ -240,6 +240,7 @@
             }
           ],
           "samples": [
+            "i want to eat",
             "feeling like having lunch",
             "feeling like dinner",
             "{establishmentType}",
@@ -645,5 +646,5 @@
       }
     ]
   },
-  "version": "41"
+  "version": "43"
 }
