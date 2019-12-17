@@ -328,7 +328,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         
         for count, result in enumerate(query_results["results"]["bindings"]):
             logger.info(result)
-            final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"])) + " solutions in " + city + " ."
+            final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"])) + " solutions in " + city + ". "
             foode_name = str(result["posLabel"]["value"])
             foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
             foode_phone = str(result["phone"]["value"])
@@ -337,22 +337,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
-
-        # Get the values from the slots and prepare the parameters to pass to the queries
-        #city = str(slots["city"].value)
-        #user_ftype = str(slots["foodType"].value).lower()
-        #if(user_ftype in "pizza" or user_ftype in "pizzeria"):
-        #    food_type = "Pizzeria"
-        #else:
-            #handler_input.response_builder.speak("I don't know anything about that, sorry!")
-            #return handler_input.response_builder.response
-        
-        # log the slots the user gave for insight
-
-        # add parameters to the query and run it on the VKG
-        
-        
-        
 
 
 class WineSearchIntentHandler(AbstractRequestHandler):
