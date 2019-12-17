@@ -300,11 +300,35 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("FoodCuisineSearchIntent")(handler_input)
 
     def handle(self, handler_input):
-        # lambda log
         logger.info("Improvement log: User called FoodCuisineSearchIntent")
-            
-        # prepare result statement
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+
+        city = ""
+        foode_type = ""
+        
+        # Get the values from the slots and prepare the parameters to pass to the queries
+        city = str(slots["city"].value)
+        user_ftype = str(slots["foodType"].value).lower()
+        if(user_ftype in "pizza" || user_ftype in "pizzeria"):
+            food_type = "Pizzeria"
+        else:
+            handler_input.response_builder.speak(final_speech)
+            return handler_input.response_builder.response
+        
+        # log the slots the user gave for insight
+        logger.info("Improvement log: User requested a" + food_type + " in " + city)
+
+        # add parameters to the query and run it on the VKG
+        total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
+        foode_query_string = data.Q_RANDOM_FOODE_CITY.format(foode_type, city)
+        total_foode_results = query_vkg(total_foode_query_string)
+        foode_results = query_vkg(foode_query_string)
+
         final_speech = ""
+        foode_name = ""
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
     
