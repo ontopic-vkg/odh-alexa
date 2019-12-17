@@ -328,8 +328,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         
         logger.info(results)
         
-        final_speech += "I looked for that you asked me. "
-        
         for count, result in enumerate(results["results"]["bindings"]):
             final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
             #foode_name = str(result["posLabel"]["value"])
