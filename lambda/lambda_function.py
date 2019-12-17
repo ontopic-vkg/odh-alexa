@@ -315,7 +315,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         if(user_ftype in "pizza" or user_ftype in "pizzeria"):
             food_type = "Pizzeria"
         else:
-            handler_input.response_builder.speak("I don't know anything about that, sorry")
+            handler_input.response_builder.speak("I don't know anything about that, sorry!")
             return handler_input.response_builder.response
         
         # log the slots the user gave for insight
