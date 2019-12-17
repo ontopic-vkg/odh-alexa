@@ -321,14 +321,14 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             return handler_input.response_builder.response
             
         
-        logger.info("Improvement log: User requested a" + food_type + " in " + city)
+        logger.info("Improvement log: User requested a " + food_type + " in " + city)
 
         query_string = data.Q_PIZZERIAS.format(food_type, city)
         query_results = query_vkg(query_string)
         
         for count, result in enumerate(query_results["results"]["bindings"]):
             logger.info(result)
-            final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"])) + " solutions in " + city + ". "
+            final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"])) + " solutions in " + city + " . "
             foode_name = str(result["posLabel"]["value"])
             foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
             foode_phone = str(result["phone"]["value"])
