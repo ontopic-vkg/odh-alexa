@@ -294,6 +294,20 @@ class NoMoreFoodInfoIntentHandler(AbstractRequestHandler):
         session_attr["foode_detail_list"] = None
         return handler_input.response_builder.response
 
+class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("FoodCuisineSearchIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # lambda log
+        logger.info("Improvement log: User called FoodCuisineSearchIntent")
+            
+        # prepare result statement
+        final_speech = ""
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
+    
 
 class WineSearchIntentHandler(AbstractRequestHandler):
 
