@@ -338,7 +338,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
-    
 
 class WineSearchIntentHandler(AbstractRequestHandler):
 
