@@ -146,6 +146,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
         
         user_nr = slots["info_number"].value
         logger.info("CALLED NR " + str(user_nr))
+        logger.info(len(detail_list))
         details = detail_list[int(user_nr)-1]
         name = details[1]
         address = details[2]
