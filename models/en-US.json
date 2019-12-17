@@ -223,7 +223,7 @@
           ]
         },
         {
-          "name": "FoodSearchIntent",
+          "name": "FoodEstablishmentSearchIntent",
           "slots": [
             {
               "name": "city",
@@ -257,6 +257,39 @@
             "find me a {establishmentType} in {city}",
             "eat in a {establishmentType}",
             "eat in {city}"
+          ]
+        },
+        {
+          "name": "FoodCuisineSearchIntent",
+          "slots": [
+            {
+              "name": "foodType",
+              "type": "FoodCuisineType",
+              "samples": [
+                "some {foodType}",
+                "{foodType}"
+              ]
+            },
+            {
+              "name": "city",
+              "type": "AMAZON.EUROPE_CITY",
+              "samples": [
+                "I said {city}",
+                "in {city}",
+                "in the city of {city}",
+                "{city}"
+              ]
+            }
+          ],
+          "samples": [
+            "I feel like eating {foodType} ",
+            "I would like to eat {foodType} in {city}",
+            "I would like to eat {foodType}",
+            "want to eat {foodType}",
+            "I would like {foodType}",
+            "{foodType} in {city}",
+            "how about some {foodType}",
+            "I feel like eating {foodType} in {city}"
           ]
         }
       ],
@@ -399,6 +432,20 @@
             }
           ],
           "name": "FoodEstablishmentType"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "pizza",
+                "synonyms": [
+                  "pizzeria",
+                  "pizzas"
+                ]
+              }
+            }
+          ],
+          "name": "FoodCuisineType"
         }
       ]
     },
@@ -458,7 +505,7 @@
           ]
         },
         {
-          "name": "FoodSearchIntent",
+          "name": "FoodEstablishmentSearchIntent",
           "confirmationRequired": false,
           "prompts": {},
           "slots": [
@@ -485,6 +532,37 @@
                   "prompt": "Slot.Validation.460776551126.15343591869.891076619968"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "FoodCuisineSearchIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "foodType",
+              "type": "FoodCuisineType",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.334843277572.365624261982"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.334843277572.365624261982.270247301933"
+                }
+              ]
+            },
+            {
+              "name": "city",
+              "type": "AMAZON.EUROPE_CITY",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.799595328128.1159038915100"
+              }
             }
           ]
         }
@@ -614,7 +692,7 @@
         "variations": [
           {
             "type": "PlainText",
-            "value": "In what city would you like to eat?"
+            "value": "In which city would you like to eat?"
           },
           {
             "type": "PlainText",
@@ -643,8 +721,56 @@
             "value": "I can only search for restaurants, bars, fast food, wineries and ice cream shops so far. Please provide one of those values"
           }
         ]
+      },
+      {
+        "id": "Slot.Validation.269030179889.440066666511.168541765353",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I don't think I know that food type. Would you like a pizza just in case?"
+          },
+          {
+            "type": "PlainText",
+            "value": "I don't think I can help you with that. You can try again or maybe try to ask me something else."
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.334843277572.365624261982",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What it is that you prefer today"
+          },
+          {
+            "type": "PlainText",
+            "value": "What would you like to eat?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.334843277572.365624261982.270247301933",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I can't seem to recognize that food type... Would you like some pizza just in case?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.799595328128.1159038915100",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "In which city should I look in?"
+          },
+          {
+            "type": "PlainText",
+            "value": "In which city would you like to eat?"
+          }
+        ]
       }
     ]
   },
-  "version": "43"
+  "version": "59"
 }

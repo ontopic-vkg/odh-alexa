@@ -13,12 +13,34 @@
         ]
       }
     },
+    "privacyAndCompliance": {
+      "locales": {
+        "en-US": {}
+      },
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    },
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "name": "odh2"
+          "name": "odh2",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/4791/4f55083bb5f242688d76f4d7cb41f242/APP_ICON?versionId=TjwvfjUyN5TAJb_w42pcgNU8H2EPjOR6&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191217T152102Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191217%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=76a74fbc3941a0c69894ed70d71ad371b31ac0d4165ea7625904b6a60b4a851d",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/da4f/a10bab81ec77463ba343013c23ad0ca8/APP_ICON_LARGE?versionId=Pu6hRZJ85kpIYAkr5YcoGESv1dkiEcUw&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191217T152102Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191217%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=90fe8dbb33b23af0541df16a7714387fbbaf55d76bc8eb217bd4717bb00d9813",
+          "summary": "short sentence",
+          "description": "detailed sentence",
+          "examplePhrases": [
+            "Alexa, open data hub"
+          ],
+          "keywords": []
         }
-      }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "test",
+      "category": "BUSINESS_AND_FINANCE",
+      "distributionCountries": []
     }
   }
 }
