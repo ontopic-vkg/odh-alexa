@@ -318,6 +318,11 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         else:
             handler_input.response_builder.speak("I don't know anything about that, sorry!")
             return handler_input.response_builder.response
+            
+        query_string = data.Q_PIZZERIAS.format(food_type, city)
+        results = query_vkg(query_string)
+        
+        logger.info(results)
         
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
@@ -335,10 +340,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         #logger.info("Improvement log: User requested a" + food_type + " in " + city)
 
         # add parameters to the query and run it on the VKG
-        #query_string = data.Q_PIZZERIAS.format(food_type, city)
-        #results = query_vkg(query_string)
         
-        #logger.info(results)
         
         #for count, result in enumerate(results["results"]["bindings"]):
             #final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
