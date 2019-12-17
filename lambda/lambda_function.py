@@ -307,7 +307,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         session_attr = attribute_manager.session_attributes
 
         city = ""
-        foode_type = ""
+        food_type = ""
         
         # Get the values from the slots and prepare the parameters to pass to the queries
         city = str(slots["city"].value)
@@ -322,10 +322,19 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         logger.info("Improvement log: User requested a" + food_type + " in " + city)
 
         # add parameters to the query and run it on the VKG
-        total_foode_query_string = data.Q_NR_FOODE_IN_CITY.format(foode_type, city)
-        foode_query_string = data.Q_RANDOM_FOODE_CITY.format(foode_type, city)
-        total_foode_results = query_vkg(total_foode_query_string)
-        foode_results = query_vkg(foode_query_string)
+        query_string = data.Q_PIZZERIAS.format(food_type, city)
+        results = query_vkg(query_string)
+        
+        for count, result in enumerate(results["results"]["bindings"]):
+            final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) \
+            + " in " + city + " ."
+            
+            foode_name = str(result["posLabel"]["value"])
+            foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+            foode_phone = str(result["phone"]["value"])
+            final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
+            "</lang> and it's located in " + foode_address + " ."
+
 
         final_speech = ""
         foode_name = ""
