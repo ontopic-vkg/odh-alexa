@@ -147,7 +147,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
 
         user_nr = slots["info_number"].value
         details = []
-        if (user_nr > len(detail_list) or user_nr < 1):
+        if (int(user_nr) > len(detail_list) or int(user_nr) < 1):
             handler_input.response_builder.speak("I didn't give you that option, please make sure you choose on of the given numbers next time.")
             return handler_input.response_builder.response
         else:
