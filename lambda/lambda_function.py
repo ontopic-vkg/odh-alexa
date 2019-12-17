@@ -212,10 +212,10 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class FoodSearchIntentHandler(AbstractRequestHandler):
+class FoodEstablishmentSearchIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("FoodSearchIntent")(handler_input)
+        return ask_utils.is_intent_name("FoodEstablishmentSearchIntent")(handler_input)
 
     def handle(self, handler_input):
         # log intent that was called for insight
@@ -579,7 +579,7 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 # ODH logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
-sb.add_request_handler(FoodSearchIntentHandler())
+sb.add_request_handler(FoodEstablishmentSearchIntentHandler())
 sb.add_request_handler(MoreInfoForNumberIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(NoMoreFoodInfoIntentHandler())
