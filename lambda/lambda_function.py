@@ -145,6 +145,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             session_attr["foode_detail_list"] = None
         
         user_nr = slots["info_number"].value
+        logger.info(user_nr)
         details = detail_list[int(user_nr)-1]
         name = details[1]
         address = details[2]
