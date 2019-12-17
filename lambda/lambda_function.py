@@ -319,6 +319,9 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak("I don't know anything about that, sorry!")
             return handler_input.response_builder.response
             
+        
+        logger.info("Improvement log: User requested a" + food_type + " in " + city)
+
         query_string = data.Q_PIZZERIAS.format(food_type, city)
         results = query_vkg(query_string)
         
@@ -337,7 +340,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             #return handler_input.response_builder.response
         
         # log the slots the user gave for insight
-        #logger.info("Improvement log: User requested a" + food_type + " in " + city)
 
         # add parameters to the query and run it on the VKG
         
