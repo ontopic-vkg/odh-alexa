@@ -308,7 +308,16 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
 
         city = ""
         food_type = ""
-        final_speech = "Get some pizza"
+        final_speech = ""
+        
+        # Get the values from the slots and prepare the parameters to pass to the queries
+        city = str(slots["city"].value)
+        user_ftype = str(slots["foodType"].value).lower()
+        if(user_ftype in "pizza" or user_ftype in "pizzeria"):
+            food_type = "Pizzeria"
+        else:
+            handler_input.response_builder.speak("I don't know anything about that, sorry!")
+            return handler_input.response_builder.response
         
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
