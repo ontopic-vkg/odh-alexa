@@ -597,6 +597,7 @@ sb.add_request_handler(FoodEstablishmentSearchIntentHandler())
 sb.add_request_handler(MoreInfoForNumberIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(NoMoreFoodInfoIntentHandler())
+sb.add_request_handler(FoodCuisineSearchIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 # ----------------------------------------------------------
