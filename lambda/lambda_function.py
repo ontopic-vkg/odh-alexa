@@ -329,11 +329,11 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         
         for count, result in enumerate(results["results"]["bindings"]):
             final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
-            foode_name = str(result["posLabel"]["value"])
-            foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-            foode_phone = str(result["phone"]["value"])
-            final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
-            "</lang> and it's located in " + foode_address + " ."
+            #foode_name = str(result["posLabel"]["value"])
+            #foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+            #foode_phone = str(result["phone"]["value"])
+            #final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
+            #"</lang> and it's located in " + foode_address + " ."
 
 
         final_speech = ""
