@@ -87,7 +87,5 @@ SELECT ?r ?posLabel ?addr ?loc ?phone WHERE {{
   ?r a :{} ; schema:name ?posLabel ; schema:address ?a ; schema:telephone ?phone.
   ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
   FILTER (lang(?posLabel) = 'it' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
-  #BIND(RAND() AS ?rand) .
-  #FILTER(?rand < 0.15) .
 }}
 """
