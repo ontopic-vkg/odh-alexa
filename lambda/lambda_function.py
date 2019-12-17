@@ -325,6 +325,8 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         query_string = data.Q_PIZZERIAS.format(food_type, city)
         results = query_vkg(query_string)
         
+        logger.info(results)
+        
         for count, result in enumerate(results["results"]["bindings"]):
             final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) \
             + " in " + city + " ."
