@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # sparlq endpoint
-sparql_endpoint = SPARQLWrapper("https://sparql.opendatahub.testingmachine.eu/sparql")
+sparql_endpoint = SPARQLWrapper("https://sparql.opendatahub.bz.it/sparql")
 
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -143,9 +143,16 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             user_foode_nr = slots["info_number"].value
             detail_list = session_attr["foode_detail_list"]
             session_attr["foode_detail_list"] = None
-        
+            
+
         user_nr = slots["info_number"].value
-        details = detail_list[int(user_nr)-1]
+        details = []
+        if (int(user_nr) > len(detail_list) or int(user_nr) < 1):
+            handler_input.response_builder.speak("I can't recognize that option, please make sure you choose one of the given numbers next time.").set_should_end_session(True)
+            return handler_input.response_builder.response
+        else:
+            details = detail_list[int(user_nr)-1]
+            
         name = details[1]
         address = details[2]
         phone_nr = details[3]
@@ -205,10 +212,10 @@ class NoMoreLodgingInfoIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-class FoodSearchIntentHandler(AbstractRequestHandler):
+class FoodEstablishmentSearchIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("FoodSearchIntent")(handler_input)
+        return ask_utils.is_intent_name("FoodEstablishmentSearchIntent")(handler_input)
 
     def handle(self, handler_input):
         # log intent that was called for insight
@@ -285,6 +292,49 @@ class NoMoreFoodInfoIntentHandler(AbstractRequestHandler):
         final_speech = "Ok then, hope I was helpful."
         handler_input.response_builder.speak(final_speech)
         session_attr["foode_detail_list"] = None
+        return handler_input.response_builder.response
+
+class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("FoodCuisineSearchIntent")(handler_input)
+
+    def handle(self, handler_input):
+        logger.info("Improvement log: User called FoodCuisineSearchIntent")
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        attribute_manager = handler_input.attributes_manager
+        session_attr = attribute_manager.session_attributes
+
+        city = ""
+        food_type = ""
+        final_speech = ""
+        
+        # Get the values from the slots and prepare the parameters to pass to the queries
+        city = str(slots["city"].value)
+        user_ftype = str(slots["foodType"].value).lower()
+        
+        if(user_ftype in "pizza" or user_ftype in "pizzeria"):
+            food_type = "Pizzeria"
+        else:
+            handler_input.response_builder.speak("I don't know anything about that, sorry!")
+            return handler_input.response_builder.response
+            
+        
+        logger.info("Improvement log: User requested a " + food_type + " in " + city)
+
+        query_string = data.Q_PIZZERIAS.format(food_type, city)
+        query_results = query_vkg(query_string)
+        
+        for count, result in enumerate(query_results["results"]["bindings"]):
+            final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"])) + " solutions in " + city + " . "
+            foode_name = str(result["posLabel"]["value"])
+            foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+            foode_phone = str(result["phone"]["value"])
+            final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
+            "</lang> and it's located in " + foode_address + " ."
+
+        handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
 
@@ -572,10 +622,11 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 # ODH logic handlers -----------------------------------
 sb.add_request_handler(LodgingSearchIntentHandler())
-sb.add_request_handler(FoodSearchIntentHandler())
+sb.add_request_handler(FoodEstablishmentSearchIntentHandler())
 sb.add_request_handler(MoreInfoForNumberIntentHandler())
 sb.add_request_handler(NoMoreLodgingInfoIntentHandler())
 sb.add_request_handler(NoMoreFoodInfoIntentHandler())
+sb.add_request_handler(FoodCuisineSearchIntentHandler())
 sb.add_request_handler(WineSearchIntentHandler())
 sb.add_request_handler(GetWineAwardNameIntentHandler())
 # ----------------------------------------------------------

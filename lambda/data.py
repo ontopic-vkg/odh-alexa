@@ -77,3 +77,15 @@ SELECT ?posLabel ?addr ?loc ?phone WHERE {{
   FILTER(?rand < 0.15) .
 }} LIMIT 3
 """
+
+Q_PIZZERIAS = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX : <http://noi.example.org/ontology/odh#>
+
+SELECT ?r ?posLabel ?addr ?loc ?phone WHERE {{
+  ?r a :{} ; schema:name ?posLabel ; schema:address ?a ; schema:telephone ?phone.
+  ?a schema:streetAddress ?addr ; schema:addressLocality ?loc .
+  FILTER (lang(?posLabel) = 'it' && lang(?addr) = 'it' && lcase(?loc) = lcase('{}'@it)) .
+}}
+"""
