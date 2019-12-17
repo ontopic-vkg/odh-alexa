@@ -311,25 +311,25 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         final_speech = ""
 
         # Get the values from the slots and prepare the parameters to pass to the queries
-        city = str(slots["city"].value)
-        user_ftype = str(slots["foodType"].value).lower()
-        if(user_ftype in "pizza" or user_ftype in "pizzeria"):
-            food_type = "Pizzeria"
+        #city = str(slots["city"].value)
+        #user_ftype = str(slots["foodType"].value).lower()
+        #if(user_ftype in "pizza" or user_ftype in "pizzeria"):
+        #    food_type = "Pizzeria"
         #else:
             #handler_input.response_builder.speak("I don't know anything about that, sorry!")
             #return handler_input.response_builder.response
         
         # log the slots the user gave for insight
-        logger.info("Improvement log: User requested a" + food_type + " in " + city)
+        #logger.info("Improvement log: User requested a" + food_type + " in " + city)
 
         # add parameters to the query and run it on the VKG
-        query_string = data.Q_PIZZERIAS.format(food_type, city)
-        results = query_vkg(query_string)
+        #query_string = data.Q_PIZZERIAS.format(food_type, city)
+        #results = query_vkg(query_string)
         
-        logger.info(results)
+        #logger.info(results)
         
-        for count, result in enumerate(results["results"]["bindings"]):
-            final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
+        #for count, result in enumerate(results["results"]["bindings"]):
+            #final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
             #foode_name = str(result["posLabel"]["value"])
             #foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
             #foode_phone = str(result["phone"]["value"])
