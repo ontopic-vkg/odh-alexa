@@ -324,10 +324,18 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         logger.info("Improvement log: User requested a" + food_type + " in " + city)
 
         query_string = data.Q_PIZZERIAS.format(food_type, city)
-        results = query_vkg(query_string)
+        query_results = query_vkg(query_string)
         
-        logger.info(results)
+        for count, result in enumerate(query_results["results"]["bindings"]):
+            final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
+            foode_name = str(result["posLabel"]["value"])
+            foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
+            foode_phone = str(result["phone"]["value"])
+            final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
+            "</lang> and it's located in " + foode_address + " ."
+
         
+
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
@@ -345,14 +353,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         # add parameters to the query and run it on the VKG
         
         
-        #for count, result in enumerate(results["results"]["bindings"]):
-            #final_speech += "I found something that might interest you. Here are " + str(len(results["results"]["bindings"]) + " solutions in " + city + " ."
-            #foode_name = str(result["posLabel"]["value"])
-            #foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
-            #foode_phone = str(result["phone"]["value"])
-            #final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
-            #"</lang> and it's located in " + foode_address + " ."
-
+        
 
 
 class WineSearchIntentHandler(AbstractRequestHandler):
