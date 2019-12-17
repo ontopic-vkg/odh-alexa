@@ -327,6 +327,7 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         query_results = query_vkg(query_string)
         
         for count, result in enumerate(query_results["results"]["bindings"]):
+            logger.info(result)
             final_speech += "I found something that might interest you. Here are " + str(len(query_results["results"]["bindings"]) + " solutions in " + city + " ."
             foode_name = str(result["posLabel"]["value"])
             foode_address = str(result["addr"]["value"]) + " " + str(result["loc"]["value"])
