@@ -334,8 +334,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
             "</lang> and it's located in " + foode_address + " ."
 
-        
-
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
 
