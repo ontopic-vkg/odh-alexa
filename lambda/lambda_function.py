@@ -336,8 +336,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             #"</lang> and it's located in " + foode_address + " ."
 
 
-        final_speech = ""
-        foode_name = ""
         handler_input.response_builder.speak(final_speech)
         return handler_input.response_builder.response
     
