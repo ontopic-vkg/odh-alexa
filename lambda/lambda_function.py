@@ -146,12 +146,12 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             
 
         user_nr = slots["info_number"].value
+        details = []
         if (user_nr > len(detail_list) or user_nr < 1):
             handler_input.response_builder.speak("I didn't give you that option, please make sure you choose on of the given numbers next time.")
             return handler_input.response_builder.response
-        logger.info("CALLED NR " + str(user_nr))
-        logger.info()
-        details = detail_list[int(user_nr)-1]
+        else:
+            details = detail_list[int(user_nr)-1]
         name = details[1]
         address = details[2]
         phone_nr = details[3]
