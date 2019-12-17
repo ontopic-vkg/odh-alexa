@@ -308,7 +308,10 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
 
         city = ""
         food_type = ""
-        final_speech = ""
+        final_speech = "Get some pizza"
+        
+        handler_input.response_builder.speak(final_speech)
+        return handler_input.response_builder.response
 
         # Get the values from the slots and prepare the parameters to pass to the queries
         #city = str(slots["city"].value)
@@ -336,8 +339,8 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
             #final_speech += "Number " + str(count+1) +  " is called <lang xml:lang='de-DE'>" + foode_name + \
             #"</lang> and it's located in " + foode_address + " ."
 
-        handler_input.response_builder.speak(final_speech)
-        return handler_input.response_builder.response
+        
+
 
 class WineSearchIntentHandler(AbstractRequestHandler):
 
