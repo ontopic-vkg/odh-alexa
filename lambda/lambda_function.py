@@ -308,7 +308,8 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
 
         city = ""
         food_type = ""
-        
+        final_speech = ""
+
         # Get the values from the slots and prepare the parameters to pass to the queries
         city = str(slots["city"].value)
         user_ftype = str(slots["foodType"].value).lower()
@@ -327,7 +328,6 @@ class FoodCuisineSearchIntentHandler(AbstractRequestHandler):
         
         logger.info(results)
         
-        final_speech = ""
         final_speech += "I looked for that you asked me. "
         
         for count, result in enumerate(results["results"]["bindings"]):
