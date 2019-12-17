@@ -152,6 +152,7 @@ class MoreInfoForNumberIntentHandler(AbstractRequestHandler):
             return handler_input.response_builder.response
         else:
             details = detail_list[int(user_nr)-1]
+            
         name = details[1]
         address = details[2]
         phone_nr = details[3]
